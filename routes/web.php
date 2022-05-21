@@ -63,6 +63,11 @@ Route::controller(PendidikanController::class)->group(function () {
     Route::put('pendidikan/{pendidikan}','update')->name('pendidikan_update');
 });
 
+Route::controller(EmployeeController::class)->group(function () {
+    Route::get('employees','index');
+    Route::get('employeeinsert','insertdata');
+});
+
  Route::resource('kelompok',KelompokJabatanController::class);
  Route::resource('jenjang',JenjangJabatanController::class);
  Route::resource('resikokerja',ResikoKerjaController::class);
@@ -71,4 +76,3 @@ Route::controller(PendidikanController::class)->group(function () {
  Route::resource('statuswp',SttsWpController::class);
  Route::resource('sttskerja',SttsKerjaController::class);
  Route::resource('bank',BankController::class);
- Route::resource('employees',EmployeeController::class);

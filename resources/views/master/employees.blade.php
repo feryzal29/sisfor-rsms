@@ -23,7 +23,8 @@
         <div class="card">
             <div class="card-header">
               <h3 class="card-title">Data Karyawan RS PKU Muhammadiyah Sekapuk</h3>
-              <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">TAMBAH DATA</button>
+              {{-- <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">TAMBAH DATA</button> --}}
+              <a href="/employeeinsert" class="btn btn-primary float-right">TAMBAH DATA</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

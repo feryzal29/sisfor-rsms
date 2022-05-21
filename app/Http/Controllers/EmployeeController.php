@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bidang;
 use App\Models\employee;
 use App\Models\JenjangJabatan;
 use App\Models\KelompokJabatan;
+use App\Models\Pendidikan;
 use App\Models\ResikoKerja;
+use App\Models\SttsKerja;
+use App\Models\SttsWp;
 use App\Models\unit;
 use App\Models\UnitEmergency;
 use Illuminate\Http\Request;
+use PDO;
 
 class EmployeeController extends Controller
 {
@@ -33,12 +38,31 @@ class EmployeeController extends Controller
                 'stts_kerja',
                 'emergency'
         ])->get();
+        return view('master.employees',compact('employee'));
+    }
+
+    public function insertdata(){
         $jenjang = JenjangJabatan::all();
         $kelompok = KelompokJabatan::all();
         $resiko = ResikoKerja::all();
         $emergency = UnitEmergency::all();
         $unit = unit::all();
-        return view('master.employees',compact('employee'));
+        $bidang = Bidang::all();
+        $wp = SttsWp::all();
+        $kerja = SttsKerja::all();
+        $pendidikan = Pendidikan::all();
+
+        return view('master.employees_insert',
+               compact('jenjang',
+                       'kelompok',
+                       'resiko',
+                       'emergency',
+                       'unit',
+                       'bidang',
+                       'wp',
+                       'kerja',
+                       'pendidikan'
+                    ));
     }
 
     /**
