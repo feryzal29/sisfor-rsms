@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\employee;
+use App\Models\JenjangJabatan;
+use App\Models\KelompokJabatan;
+use App\Models\ResikoKerja;
+use App\Models\unit;
+use App\Models\UnitEmergency;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -14,7 +19,26 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employee = employee::with([
+                'jenjang',
+                'kelompok',
+                'emergency',
+                'resiko',
+                'unit',
+                'bidang',
+                'stts_wp',
+                'bank',
+                'pendidikan',
+                'indexing',
+                'stts_kerja',
+                'emergency'
+        ])->get();
+        $jenjang = JenjangJabatan::all();
+        $kelompok = KelompokJabatan::all();
+        $resiko = ResikoKerja::all();
+        $emergency = UnitEmergency::all();
+        $unit = unit::all();
+        return view('master.employees',compact('employee'));
     }
 
     /**

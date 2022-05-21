@@ -3,6 +3,7 @@
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenjangJabatanController;
 use App\Http\Controllers\KelompokJabatanController;
@@ -70,3 +71,4 @@ Route::controller(PendidikanController::class)->group(function () {
  Route::resource('statuswp',SttsWpController::class);
  Route::resource('sttskerja',SttsKerjaController::class);
  Route::resource('bank',BankController::class);
+ Route::resource('employees',EmployeeController::class);
