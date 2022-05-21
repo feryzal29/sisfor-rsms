@@ -38,7 +38,7 @@ class employee extends Model
     }
 
     public function emergency(){
-        return $this->belongsTo(UnitEmergency::class,'kode','kode');
+        return $this->belongsTo(UnitEmergency::class,'kode_emergency','kode');
     }
 
     public function resiko(){

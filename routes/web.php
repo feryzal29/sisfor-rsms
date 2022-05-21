@@ -7,7 +7,6 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenjangJabatanController;
 use App\Http\Controllers\KelompokJabatanController;
-use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\ResikoKerjaController;
 use App\Http\Controllers\SttsKerjaController;
@@ -43,10 +42,6 @@ Route::controller(UnitController::class)->group(function () {
     Route::get('unit/delete/{id}','delete')->name('unit.delete');
 });
 
-Route::controller(PegawaiController::class)->group(function () {
-    Route::get('pegawai','index');
-});
-
 Route::controller(JabatanController::class)->group(function () {
     Route::get('jabatan','index');
     Route::get('jabatan/{jabatan}','show')->name('jabatan.show');
@@ -66,7 +61,10 @@ Route::controller(PendidikanController::class)->group(function () {
 Route::controller(EmployeeController::class)->group(function () {
     Route::get('employees','index');
     Route::get('employeeinsert','insertdata');
+    Route::get('employeesedit/{id}','showEdit')->name('employees.show');
     Route::post('employees','store');
+    Route::get('employees/delete/{id}','destroy')->name('employees.delete');
+    Route::put('employees/{id}','update')->name('employees.update');
 });
 
  Route::resource('kelompok',KelompokJabatanController::class);

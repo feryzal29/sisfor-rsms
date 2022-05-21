@@ -108,8 +108,8 @@
                     <td>{{ $item->dankes }}</td>
                     <td>{{ $item->no_ktp }}</td>
                     <td>
-                      <a href="{{ route('bank.show', $item->id) }}" class="btn btn-success">Edit</a>
-                      <a href="javascript:;" class="btn btn-danger btn-delete" data-action="{{ route('bank.destroy', $item->id) }}">Delete</a>
+                      <a href="{{ route('employees.show', $item->id) }}" class="btn btn-success">Edit</a>
+                      <a onclick="return confirm('Are you sure?')" href="{{ route('employees.delete', $item->id) }}" class="btn btn-danger">Delete</a>
                       {{-- <a onclick="return confirm('Are you sure?')" href="{{ route('jenjang.delete', $item->id) }}" class="btn btn-danger">Delete</a> --}}
                     </td>
                   </tr>
