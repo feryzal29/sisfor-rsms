@@ -48,6 +48,7 @@ return new class extends Migration
             $table->double('dankes');
             $table->string('no_ktp',20);
             $table->timestamps();
+            $table->softDeletes()->nullable();
 
             $table->foreign('kode_jenjang')->references('kode_jenjang')->on('jenjang_jabatans')->onUpdate('cascade')->onDelete('NO ACTION');
             $table->foreign('kode_kelompok')->references('kode_kelompok')->on('kelompok_jabatans')->onUpdate('cascade')->onDelete('NO ACTION');

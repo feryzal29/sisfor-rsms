@@ -19,8 +19,8 @@ return new class extends Migration
             $table->id();
             $table->string('kode_unit',10)->unique();
             $table->string('nama_unit',100);
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

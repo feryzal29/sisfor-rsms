@@ -66,6 +66,7 @@ Route::controller(PendidikanController::class)->group(function () {
 Route::controller(EmployeeController::class)->group(function () {
     Route::get('employees','index');
     Route::get('employeeinsert','insertdata');
+    Route::post('employees','store');
 });
 
  Route::resource('kelompok',KelompokJabatanController::class);

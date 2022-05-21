@@ -18,7 +18,7 @@ class employee extends Model
      'kode_unit','id_bidangs',
      'stts_wp','stts_kerja',
      'npwp','id_pendidikans',
-     'gapok','tgl_lahir','tmp_lahir',
+     'gapok','tmp_lahir','tgl_lahir',
      'alamat','kota',
      'mulai_kerja','ms_kerja',
      'indexings','id_banks',
