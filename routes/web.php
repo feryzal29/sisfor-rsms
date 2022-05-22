@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\DashboardController;
@@ -7,16 +8,21 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenjangJabatanController;
 use App\Http\Controllers\KelompokJabatanController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\ResikoKerjaController;
 use App\Http\Controllers\SttsKerjaController;
 use App\Http\Controllers\SttsWpController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UnitEmergencyController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\Authenticate as MiddlewareAuthenticate;
 use App\Models\Bank;
 use App\Models\EmergencyIndex;
 use App\Models\Pendidikan;
 use App\Models\UnitEmergency;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +35,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('login','index');
+    Route::post('login','store')->name('login.store');
+});
+
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/','index');
@@ -67,6 +79,11 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::put('employees/{id}','update')->name('employees.update');
 });
 
+// Route::controller(UserController::class)->group(function () {
+//     Route::get('user','index');
+//     Route::post('user','store');
+// });
+
  Route::resource('kelompok',KelompokJabatanController::class);
  Route::resource('jenjang',JenjangJabatanController::class);
  Route::resource('resikokerja',ResikoKerjaController::class);
@@ -75,3 +92,5 @@ Route::controller(EmployeeController::class)->group(function () {
  Route::resource('statuswp',SttsWpController::class);
  Route::resource('sttskerja',SttsKerjaController::class);
  Route::resource('bank',BankController::class);
+ 
+ Route::resource('users',UserController::class);

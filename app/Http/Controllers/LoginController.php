@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\dashboard;
+use app\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class DashboardController extends Controller
+class LoginController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        return view('auth.login');
     }
 
     /**
@@ -39,16 +36,26 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required'
+        ]);
+
+        if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
+            $request->session()->regenerate();
+            return redirect()->intended('/');
+        }
+
+        return redirect()->back()->with(['error'=>'Username atau password salah']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\dashboard  $dashboard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(dashboard $dashboard)
+    public function show($id)
     {
         //
     }
@@ -56,10 +63,10 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\dashboard  $dashboard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(dashboard $dashboard)
+    public function edit($id)
     {
         //
     }
@@ -68,10 +75,10 @@ class DashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\dashboard  $dashboard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, dashboard $dashboard)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,10 +86,10 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\dashboard  $dashboard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(dashboard $dashboard)
+    public function destroy($id)
     {
         //
     }
