@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use app\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -47,6 +48,20 @@ class LoginController extends Controller
         }
 
         return redirect()->back()->with(['error'=>'Username atau password salah']);
+    }
+
+    public function authenticated(Request $request, $user)
+        {
+            if ($user->hasRole('admin')) {
+                return redirect()->route('admin.page');
+            }
+
+            return redirect()->route('user.page');
+        }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/login');
     }
 
     /**

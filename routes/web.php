@@ -37,13 +37,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(LoginController::class)->group(function () {
-    Route::get('login','index');
+    Route::get('login','index')->name('login');
     Route::post('login','store')->name('login.store');
+    Route::get('logout','logout');
 });
 
 
 Route::controller(DashboardController::class)->group(function () {
-    Route::get('/','index');
+    Route::get('/','index')->middleware('role:admin')->name('admin.page');
 });
 
 Route::controller(UnitController::class)->group(function () {
