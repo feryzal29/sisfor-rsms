@@ -6,6 +6,7 @@ use App\Http\Controllers\BidangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\JenisKegiatanController;
 use App\Http\Controllers\JenjangJabatanController;
 use App\Http\Controllers\KelompokJabatanController;
 use App\Http\Controllers\LoginController;
@@ -44,7 +45,8 @@ Route::controller(LoginController::class)->group(function () {
 
 
 Route::controller(DashboardController::class)->group(function () {
-    Route::get('/','index')->middleware('role:admin')->name('admin.page');
+    // Route::get('/','index')->middleware('role:admin')->name('admin.page');
+    Route::get('/','index');
 });
 
 Route::controller(UnitController::class)->group(function () {
@@ -93,5 +95,6 @@ Route::controller(EmployeeController::class)->group(function () {
  Route::resource('statuswp',SttsWpController::class);
  Route::resource('sttskerja',SttsKerjaController::class);
  Route::resource('bank',BankController::class);
+ Route::resource('jeniskegiatan',JenisKegiatanController::class);
  
  Route::resource('users',UserController::class);
