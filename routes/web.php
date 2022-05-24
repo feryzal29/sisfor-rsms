@@ -4,6 +4,7 @@ use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisKegiatanController;
@@ -80,6 +81,14 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('employees','store');
     Route::get('employees/delete/{id}','destroy')->name('employees.delete');
     Route::put('employees/{id}','update')->name('employees.update');
+});
+
+Route::controller(DiklatController::class)->group(function () {
+    Route::get('diklat','index')->name('diklat.index');
+    Route::get('diklat/{id}','show')->name('diklat.show');
+    Route::post('diklat','store')->name('diklat.store');
+    Route::put('diklat/{diklat}','update')->name('diklat.update');
+    Route::delete('diklat/{id}','destroy')->name('diklat.delete');
 });
 
 // Route::controller(UserController::class)->group(function () {

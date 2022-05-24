@@ -47,18 +47,9 @@
                       <td>{{ $item->nama }}</td>
                       <td>{{ $item->keterangan }}</td>
                       <td>
-                        <a href="{{ route('jeniskegiatan.show',$item->id) }}" class="btn btn-success float-left" style="margin-right: 5px">Edit</a>
-                        <a href="javascript:;" class="btn btn-danger btn-delete float-left" style="margin-right: 5px" data-action="{{ route('jeniskegiatan.destroy', $item->id) }}">Delete</a>
-                       
-                        <div class="dropdown show float-left">
-                          <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-                            Absensi
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Masuk</a>
-                            <a class="dropdown-item" href="#">Pulang</a>
-                          </div>
-                        </div>
+                        <a href="{{ route('jeniskegiatan.show',$item->id) }}" class="btn btn-success" style="margin-right: 5px">Edit</a>
+                        <a href="javascript:;" class="btn btn-danger btn-delete" style="margin-right: 5px" data-action="{{ route('jeniskegiatan.destroy', $item->id) }}">Delete</a>
+                      
                         {{-- <a onclick="return confirm('Are you sure?')" href="{{ route('jenjang.delete', $item->id) }}" class="btn btn-danger">Delete</a> --}}
                       </td>
                     </tr>
