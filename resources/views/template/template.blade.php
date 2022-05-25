@@ -669,6 +669,7 @@
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript">
 <!-- Select2 -->
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
 </body>

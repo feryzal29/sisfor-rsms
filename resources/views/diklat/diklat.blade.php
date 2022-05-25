@@ -61,8 +61,8 @@
                           Absensi
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="#">Masuk</a>
-                          <a class="dropdown-item" href="#">Pulang</a>
+                          <a class="dropdown-item" href="{{ route('diklat.absen.masuk',$item->id) }}">Masuk</a>
+                          <a class="dropdown-item" href="{{ route('diklat.absen.selesai',$item->id) }}">Pulang</a>
                           <a class="dropdown-item" href="#">Rekap Absensi </a>
                         </div>
                       </div>

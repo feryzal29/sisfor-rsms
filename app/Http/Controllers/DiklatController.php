@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Diklat;
+use App\Models\employee;
 use App\Models\JenisKegiatan;
 use App\Models\unit;
 use Illuminate\Http\Request;
@@ -92,8 +93,23 @@ class DiklatController extends Controller
             ));
     }
 
-    public function showAbsensi(){
-        return view('diklat.absensi');
+    public function showAbsensiMasuk($id){
+        return view('diklat.absensi_masuk',compact('id'));
+    }
+
+    public function showAbsensiSelesai($id){
+        return view('diklat.absensi_selesai',compact('id'));
+    }
+
+    public function getEmployees($nip){
+        $employees = employee::whereNip($nip)->first();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Success',
+            'data'    => $employees  
+        ], 200);
+
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BidangController;
@@ -84,11 +85,21 @@ Route::controller(EmployeeController::class)->group(function () {
 });
 
 Route::controller(DiklatController::class)->group(function () {
+    //Kegiatan
     Route::get('diklat','index')->name('diklat.index');
     Route::get('diklat/{id}','show')->name('diklat.show');
     Route::post('diklat','store')->name('diklat.store');
     Route::put('diklat/{diklat}','update')->name('diklat.update');
     Route::delete('diklat/{id}','destroy')->name('diklat.delete');
+
+    //absensi
+    Route::get('absensi/{id}/masuk','showAbsensiMasuk')->name('diklat.absen.masuk');
+    Route::get('absensi/{id}/selesai','showAbsensiSelesai')->name('diklat.absen.selesai');
+});
+
+Route::controller(AbsensiController::class)->group(function (){
+    Route::post('/absen/masuk', 'store')->name('absen.masuk');
+    Route::put('/absen/selesai', 'update')->name('absen.selesai');
 });
 
 // Route::controller(UserController::class)->group(function () {
