@@ -95,6 +95,7 @@ Route::controller(DiklatController::class)->group(function () {
     //absensi
     Route::get('absensi/{id}/masuk','showAbsensiMasuk')->name('diklat.absen.masuk');
     Route::get('absensi/{id}/selesai','showAbsensiSelesai')->name('diklat.absen.selesai');
+    Route::get('/absen/{id}/rekap/','RekapAbsensi')->name('diklat.absen.rekap');
 });
 
 Route::controller(AbsensiController::class)->group(function (){

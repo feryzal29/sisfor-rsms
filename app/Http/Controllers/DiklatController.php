@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Diklat;
 use App\Models\employee;
 use App\Models\JenisKegiatan;
@@ -93,12 +94,24 @@ class DiklatController extends Controller
             ));
     }
 
+    public function RekapAbsensi($id){
+    $diklat = Diklat::findOrFail($id);
+    $absen = Absensi::where('diklat_id',$id)->get();
+        return view('diklat.absensi_rekap',compact('id','absen','diklat'));
+    }
+
     public function showAbsensiMasuk($id){
-        return view('diklat.absensi_masuk',compact('id'));
+        $diklat = Diklat::find($id);
+        return view('diklat.absensi_masuk',compact('id','diklat'));
     }
 
     public function showAbsensiSelesai($id){
-        return view('diklat.absensi_selesai',compact('id'));
+        $diklat = Diklat::with([
+            'absen'=>function($query){
+                $query->whereNotNull('selesai_at');
+            }
+        ])->find($id);
+        return view('diklat.absensi_selesai',compact('id','diklat'));
     }
 
     public function getEmployees($nip){

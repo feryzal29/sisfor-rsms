@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Absensi Masuk RS PKU Muhammadiyah Sekapuk</h3>
+              <h3 class="card-title">Absensi Masuk Kegiatan {{ $diklat->nama }} Masuk RS PKU Muhammadiyah Sekapuk</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -38,12 +38,47 @@
                     <input type="hidden" name="nip">
                     <div class="row">
                       <div class="col-4">
-                        <div id="reader" width="600px"></div>
+                        <div id="reader" width="300px"></div>
                       </div>
                     </div>
                 </form>
             </div>
             <!-- /.card-body -->
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Rekap Absensi Masuk</h3>
+            </div>
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Jam Masuk</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($diklat->absen as $item)
+                    <tr>
+                      <td>{{ $item->employee->nama }}</td>
+                      <td>{{ date('h:i:s',strtotime($item->masuk_at)) }}</td>
+                      <td>
+                        <a href="javascript:;" class="btn btn-danger btn-delete float-left" style="margin-right: 5px" data-action="">Delete</a>
+                      </td>
+                    </tr>
+                    @endforeach
+                    
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Jam Masuk</th>
+                    <th>Action</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
           </div>
     </div><!-- /.container-fluid -->
   </section>

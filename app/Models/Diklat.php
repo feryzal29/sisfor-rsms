@@ -26,4 +26,8 @@ class Diklat extends Model
     public function kegiatan(){
         return $this->belongsTo(JenisKegiatan::class,'jenis_kegiatans_id','id');
     }
+
+    public function absen(){
+        return $this->hasMany(Absensi::class,'diklat_id','id');
+    }
 }

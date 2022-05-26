@@ -11,4 +11,12 @@ class Absensi extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = 
     ['diklat_id','employee_id','masuk_at','selesai_at','date'];
+
+    public function diklat(){
+        return $this->belongsTo(Diklat::class,'diklat_id','id');
+    }
+
+    public function employee(){
+        return $this->belongsTo(employee::class,'employee_id','id');
+    }
 }

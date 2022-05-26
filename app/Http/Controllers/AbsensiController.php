@@ -77,9 +77,9 @@ class AbsensiController extends Controller
      * @param  \App\Models\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function show(Absensi $absensi)
+    public function show($id)
     {
-        //
+        
     }
 
     /**

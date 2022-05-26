@@ -669,15 +669,16 @@
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript">
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 <!-- Select2 -->
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
 </body>
 
 <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false
+  $(document).ready(function () {
+    $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
@@ -695,8 +696,9 @@
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     });
+  });
      
-    });
+     
   </script>
   @stack('scripts')
   @stack('scripts-select')

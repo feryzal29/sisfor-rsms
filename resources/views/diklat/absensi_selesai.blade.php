@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Absensi Pulang RS PKU Muhammadiyah Sekapuk</h3>
+              <h3 class="card-title">Absensi Masuk Kegiatan {{ $diklat->nama }} Masuk RS PKU Muhammadiyah Sekapuk</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -45,6 +45,41 @@
                 </form>
             </div>
             <!-- /.card-body -->
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Rekap Absensi Masuk</h3>
+            </div>
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Jam Masuk</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($diklat->absen as $item)
+                    <tr>
+                      <td>{{ $item->employee->nama }}</td>
+                      <td>{{ date('h:i:s',strtotime($item->masuk_at)) }}</td>
+                      <td>
+                        <a href="javascript:;" class="btn btn-danger btn-delete float-left" style="margin-right: 5px" data-action="">Delete</a>
+                      </td>
+                    </tr>
+                    @endforeach
+                    
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Jam Masuk</th>
+                    <th>Action</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
           </div>
     </div><!-- /.container-fluid -->
   </section>
@@ -72,7 +107,7 @@
           }
 
           let html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-            fps: 5,
+            fps: 10,
             qrbox: {
               width: 250,
               height: 250
