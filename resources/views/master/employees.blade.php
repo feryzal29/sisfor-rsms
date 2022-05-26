@@ -110,6 +110,15 @@
                     <td>
                       <a href="{{ route('employees.show', $item->id) }}" class="btn btn-success">Edit</a>
                       <a onclick="return confirm('Are you sure?')" href="{{ route('employees.delete', $item->id) }}" class="btn btn-danger">Delete</a>
+                      <div class="dropdown show float-right">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+                          Lain-lain
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="{{ route('employee.diklat',$item->id) }}">Data Diklat</a>
+                          <a class="dropdown-item" href="#">Generate QRcode</a>
+                        </div>
+                      </div>
                       {{-- <a onclick="return confirm('Are you sure?')" href="{{ route('jenjang.delete', $item->id) }}" class="btn btn-danger">Delete</a> --}}
                     </td>
                   </tr>

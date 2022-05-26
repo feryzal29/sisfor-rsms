@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Bank;
 use App\Models\Bidang;
 use App\Models\employee;
@@ -178,6 +179,12 @@ class EmployeeController extends Controller
     public function show(employee $employee)
     {
         //
+    }
+
+    public function diklat($id){
+        $employee = employee::findOrFail($id);
+        $absen = Absensi::where('employee_id',$id)->get();
+        return view('diklat.employees_diklat',compact('employee','absen'));
     }
 
     public function showEdit($id){

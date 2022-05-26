@@ -79,6 +79,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('employees','index');
     Route::get('employeeinsert','insertdata');
     Route::get('employeesedit/{id}','showEdit')->name('employees.show');
+    Route::get('employees/{id}/diklat','diklat')->name('employee.diklat');
     Route::post('employees','store');
     Route::get('employees/delete/{id}','destroy')->name('employees.delete');
     Route::put('employees/{id}','update')->name('employees.update');
