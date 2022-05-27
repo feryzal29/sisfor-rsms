@@ -7,6 +7,7 @@ use App\Http\Controllers\BidangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeesFileController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisKegiatanController;
 use App\Http\Controllers\JenjangJabatanController;
@@ -83,6 +84,12 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('employees','store');
     Route::get('employees/delete/{id}','destroy')->name('employees.delete');
     Route::put('employees/{id}','update')->name('employees.update');
+});
+
+Route::controller(EmployeesFileController::class)->group(function () {
+    Route::get('employees/{id}/files','show')->name('employees.files');
+    Route::post('employee/upload','store')->name('employees.upload.store');
+    Route::delete('employees/deletefile/{id}','destroy')->name('employees.file.delete');
 });
 
 Route::controller(DiklatController::class)->group(function () {

@@ -231,6 +231,14 @@
                       <label>No. KTP</label>
                       <input type="number" name="no_ktp" class="form-control" value="{{ $employee->no_ktp }}">
                     </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" name="email" class="form-control" value="{{ $employee->email }}">
+                    </div>
+                    <div class="form-group">
+                      <label>No. Telp</label>
+                      <input type="text" name="no_telp" class="form-control" value="{{ $employee->no_telp }}">
+                    </div>
                     <div class="form-group float-right">
                       <input type="submit" class="btn btn-success" value="GANTI">
                     </div>

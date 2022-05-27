@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenjangJabatan;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class JenjangJabatanController extends Controller
 {
@@ -25,7 +26,7 @@ class JenjangJabatanController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

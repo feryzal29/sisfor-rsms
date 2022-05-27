@@ -26,7 +26,7 @@ class employee extends Model
      'wajib_masuk','pengurangan',
      'index','mulai_kontrak',
      'cuti_diambil','dankes',
-     'no_ktp'
+     'no_ktp','email','no_telp'
     ];
 
     public function jenjang(){
@@ -71,5 +71,9 @@ class employee extends Model
 
     public function stts_kerja(){
         return $this->belongsTo(SttsKerja::class,'stts_kerja','stts');
+    }
+
+    public function files(){
+        return $this->hasMany(EmployeesFile::class,'employee_id','id');
     }
 }

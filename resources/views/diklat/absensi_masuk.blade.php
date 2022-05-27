@@ -37,8 +37,8 @@
                     <input type="hidden" name="diklat_id" value="{{ $id }}">
                     <input type="hidden" name="nip">
                     <div class="row">
-                      <div class="col-4">
-                        <div id="reader" width="300px"></div>
+                      <div class="col-6">
+                        <div id="reader"></div>
                       </div>
                     </div>
                 </form>
@@ -55,7 +55,6 @@
                   <tr>
                     <th>Nama</th>
                     <th>Jam Masuk</th>
-                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -63,9 +62,6 @@
                     <tr>
                       <td>{{ $item->employee->nama }}</td>
                       <td>{{ date('h:i:s',strtotime($item->masuk_at)) }}</td>
-                      <td>
-                        <a href="javascript:;" class="btn btn-danger btn-delete float-left" style="margin-right: 5px" data-action="">Delete</a>
-                      </td>
                     </tr>
                     @endforeach
                     
@@ -74,7 +70,6 @@
                   <tr>
                     <th>Nama</th>
                     <th>Jam Masuk</th>
-                    <th>Action</th>
                   </tr>
                   </tfoot>
                 </table>

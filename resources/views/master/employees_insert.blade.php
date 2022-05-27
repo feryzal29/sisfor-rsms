@@ -227,6 +227,14 @@
                       <label>No. KTP</label>
                       <input type="number" name="no_ktp" class="form-control" placeholder="No. KTP">
                     </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" name="email" class="form-control" placeholder="No. KTP">
+                    </div>
+                    <div class="form-group">
+                      <label>No. Telp</label>
+                      <input type="text" name="no_telp" class="form-control" placeholder="No. KTP">
+                    </div>
                     <div class="form-group float-right">
                       <input type="submit" class="btn btn-primary" value="SIMPAN">
                     </div>

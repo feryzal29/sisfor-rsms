@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Spatie\Permission\Models\Role;
 
-class UserController extends Controller
+class RoleAksesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('master.user',compact('users'));
+        //
     }
 
     /**
@@ -39,29 +36,27 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email'=>'required|email|unique:App\Models\User,email',
             'name'=>'required',
-            'password'=>'required'
-        ]);  
-        
-        $user = User::create([
+            'guard_name'=>'required',
+        ]); 
+
+        $role = Role::create([
             'name' => $request->name,
-            'email' => $request->email,
-            'password'=>Hash::make($request->password)
+            'guard_name'=>$request->guard_name
         ]);
 
         return redirect()->back()->with(['success'=>'Data Berhasil ditambah']);
     }
-    
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('master.user_edit', compact('user'));
+        //
     }
 
     /**
@@ -82,22 +77,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:App\Models\User,email,'.$user->id,
-            'password'=>'nullable|min:8',
-        ]);
-        $user->name=$request->name;
-        $user->email=$request->email;
-        if(!empty($request->password)){
-            $user->password=Hash::make($request->password);
-        }
-
-        $user->updateOrFail();
-
-        return redirect('users')->with(['success'=>'Data Berhasil diganti']);
+        //
     }
 
     /**
@@ -108,8 +90,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrfail($id);
-        $user->delete();
-        return redirect('users')->with(['danger'=>'Data Berhasil Dihapus']);
+        //
     }
 }

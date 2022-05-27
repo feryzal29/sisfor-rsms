@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EmployeesResource;
 use App\Models\Absensi;
 use App\Models\Bank;
 use App\Models\Bidang;
@@ -14,6 +15,7 @@ use App\Models\SttsKerja;
 use App\Models\SttsWp;
 use App\Models\unit;
 use App\Models\UnitEmergency;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDO;
 
@@ -26,7 +28,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = employee::with([
+        $employees = employee::with([
                 'jenjang',
                 'kelompok',
                 'emergency',
@@ -40,6 +42,14 @@ class EmployeeController extends Controller
                 'stts_kerja',
                 'emergency'
         ])->get();
+
+        $employee = [];
+        foreach($employees as $key=>$items){
+            $items->masa_kerja = Carbon::parse($items->mulai_kerja)->diffForHumans(now(), ['syntax' => 1, 'parts' => 3]);
+            $employee[] = $items;
+        }
+        //$employee = EmployeesResource::collection($employees);
+        //dd($employee->first());
         return view('master.employees',compact('employee'));
     }
 
@@ -121,6 +131,8 @@ class EmployeeController extends Controller
             'cuti'=>'required',
             'dankes'=>'required',
             'no_ktp'=>'required',
+            'email'=>'required',
+            'no_telp'=>'required',
         ]);
 
         $tgl_lahir = $request->tgl_lahir;
@@ -164,7 +176,9 @@ class EmployeeController extends Controller
             'mulai_kontrak' => $kontrakstr,
             'cuti_diambil' => $request->cuti,
             'dankes' => $request->dankes,
-            'no_ktp' => $request->no_ktp
+            'no_ktp' => $request->no_ktp,
+            'email' => $request->email,
+            'no_telp' => $request->no_telp
         ]);
 
         return redirect('employees')->with(['success'=>'Data Berhasil ditambah']);
@@ -185,6 +199,7 @@ class EmployeeController extends Controller
         $employee = employee::findOrFail($id);
         $absen = Absensi::where('employee_id',$id)->get();
         return view('diklat.employees_diklat',compact('employee','absen'));
+        
     }
 
     public function showEdit($id){
@@ -287,6 +302,8 @@ class EmployeeController extends Controller
             'cuti'=>'required',
             'dankes'=>'required',
             'no_ktp'=>'required',
+            'email'=>'required',
+            'no_telp'=>'required',
         ]);
 
         $tgl_lahir = $request->tgl_lahir;
@@ -332,7 +349,9 @@ class EmployeeController extends Controller
             'mulai_kontrak' => $kontrakstr,
             'cuti_diambil' => $request->cuti,
             'dankes' => $request->dankes,
-            'no_ktp' => $request->no_ktp
+            'no_ktp' => $request->no_ktp,
+            'email' => $request->email,
+            'no_telp' => $request->no_telp
         ]);
        
         return redirect('/employees')->with(['success'=>'Data Berhasil diganti']);

@@ -69,6 +69,8 @@
                   <th>Cuti Diambil</th>
                   <th>Dankes</th>
                   <th>No KTP</th>
+                  <th>Email</th>
+                  <th>No. telp</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -95,7 +97,7 @@
                     <td>{{ $item->alamat }}</td>
                     <td>{{ $item->kota }}</td>
                     <td>{{ $item->mulai_kerja }}</td>
-                    <td>{{ $item->ms_kerja }}</td>
+                    <td>{{ $item->masa_kerja }} </td>
                     <td>{{ $item->indexings }}</td>
                     <td>{{ $item->bank->nama }}</td>
                     <td>{{ $item->rekening }}</td>
@@ -107,6 +109,8 @@
                     <td>{{ $item->cuti_diambil}}</td>
                     <td>{{ $item->dankes }}</td>
                     <td>{{ $item->no_ktp }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->no_telp }}</td>
                     <td>
                       <a href="{{ route('employees.show', $item->id) }}" class="btn btn-success">Edit</a>
                       <a onclick="return confirm('Are you sure?')" href="{{ route('employees.delete', $item->id) }}" class="btn btn-danger">Delete</a>
@@ -116,6 +120,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                           <a class="dropdown-item" href="{{ route('employee.diklat',$item->id) }}">Data Diklat</a>
+                          <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">File Kepegawaian</a>
                           <a class="dropdown-item" href="#">Generate QRcode</a>
                         </div>
                       </div>
@@ -158,6 +163,8 @@
                   <th>Cuti Diambil</th>
                   <th>Dankes</th>
                   <th>No KTP</th>
+                  <th>Email</th>
+                  <th>No. telp</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>

@@ -56,7 +56,6 @@
                   <tr>
                     <th>Nama</th>
                     <th>Jam Masuk</th>
-                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -64,9 +63,6 @@
                     <tr>
                       <td>{{ $item->employee->nama }}</td>
                       <td>{{ date('h:i:s',strtotime($item->masuk_at)) }}</td>
-                      <td>
-                        <a href="javascript:;" class="btn btn-danger btn-delete float-left" style="margin-right: 5px" data-action="">Delete</a>
-                      </td>
                     </tr>
                     @endforeach
                     
@@ -75,7 +71,6 @@
                   <tr>
                     <th>Nama</th>
                     <th>Jam Masuk</th>
-                    <th>Action</th>
                   </tr>
                   </tfoot>
                 </table>
