@@ -15,6 +15,7 @@ use App\Http\Controllers\KelompokJabatanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\ResikoKerjaController;
+use App\Http\Controllers\RoleAksesController;
 use App\Http\Controllers\SttsKerjaController;
 use App\Http\Controllers\SttsWpController;
 use App\Http\Controllers\UnitController;
@@ -81,6 +82,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('employeeinsert','insertdata');
     Route::get('employeesedit/{id}','showEdit')->name('employees.show');
     Route::get('employees/{id}/diklat','diklat')->name('employee.diklat');
+    Route::get('employee/{id}/user','show')->name('employee.user');
     Route::post('employees','store');
     Route::get('employees/delete/{id}','destroy')->name('employees.delete');
     Route::put('employees/{id}','update')->name('employees.update');
@@ -115,6 +117,15 @@ Route::controller(AbsensiController::class)->group(function (){
 //     Route::get('user','index');
 //     Route::post('user','store');
 // });
+
+Route::controller(RoleAksesController::class)->group(function (){
+    Route::get('role','index')->name('role.akses');
+    Route::get('role/{id}/show','show')->name('role.show');
+    Route::post('role/tambah','store')->name('role.akses.insert');
+    Route::post('role/permission','addUserPermission')->name('role.permission.user');
+    Route::post('role/permission/delete','deleteUserRole')->name('role.permission.delete');
+    Route::delete('role/{id}','destroy')->name('role.delete');
+});
 
  Route::resource('kelompok',KelompokJabatanController::class);
  Route::resource('jenjang',JenjangJabatanController::class);

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MappingUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
@@ -38,19 +40,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'email'=>'required|email|unique:App\Models\User,email',
-            'name'=>'required',
-            'password'=>'required'
-        ]);  
-        
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password'=>Hash::make($request->password)
+            'nama'=>'required',
+            'id_employee'=>'required|exists:App\Models\employee,id'
         ]);
+        DB::beginTransaction();
+        try {
 
-        return redirect()->back()->with(['success'=>'Data Berhasil ditambah']);
+            $user = User::create([
+                'name' => $request->nama,
+                'email' => $request->email,
+                'password'=>Hash::make('12345678')
+            ]);
+            $maping = MappingUser::create([
+                'users_id'=>$user->id,
+                'employees_id'=>$request->id_employee
+            ]);
+
+            $user->assignRole('user');
+
+            DB::commit();
+            return redirect()->back()->with(['success'=>'Data Berhasil ditambah']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with(['failed'=>$e]);
+        }
     }
     
     /**

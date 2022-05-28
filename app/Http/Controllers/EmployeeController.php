@@ -190,9 +190,10 @@ class EmployeeController extends Controller
      * @param  \App\Models\employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(employee $employee)
+    public function show($id)
     {
-        //
+        $employee = employee::findOrFail($id);
+        return view('users.user_add',compact('employee'));
     }
 
     public function diklat($id){

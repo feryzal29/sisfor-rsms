@@ -121,6 +121,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                           <a class="dropdown-item" href="{{ route('employee.diklat',$item->id) }}">Data Diklat</a>
                           <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">File Kepegawaian</a>
+                          <a class="dropdown-item" href="{{ route('employee.user',$item->id) }}">Buat User</a>
                           <a class="dropdown-item" href="#">Generate QRcode</a>
                         </div>
                       </div>

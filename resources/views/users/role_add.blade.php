@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Data User RS PKU Muhammadiyah Sekapuk</h3>
+              <h3 class="card-title">Role Permission <b>{{ $user->name }}</b></h3>
               <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">TAMBAH DATA</button>
             </div>
             <!-- /.card-header -->
@@ -36,20 +36,21 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Nama</th>
-                  <th>Email</th>
+                  <th>Roles</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach ($users as $item)
+                  @foreach ($user->getRoleNames() as $item)
                   <tr>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->email }}</td>
+                    <td>{{ $item }}</td>
                     <td>
-                      <a href="{{ route('users.show',$item->id) }}" class="btn btn-success">Edit</a>
-                      <a href="{{ route('role.show',$item->id) }}" class="btn btn-primary">Role</a>
-                      <a href="javascript:;" class="btn btn-danger btn-delete" data-action="{{ route('users.destroy', $item->id) }}">Delete</a>
+                      <form action="{{ route('role.permission.delete') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <input type="hidden" name="role" value="{{ $item }}">
+                        <input class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit" value="Delete">
+                      </form>
                     </td>
                   </tr>
                   @endforeach
@@ -57,7 +58,6 @@
                 <tfoot>
                 <tr>
                   <th>Nama</th>
-                  <th>Email</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>
@@ -78,21 +78,18 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('users.store') }}" method="POST">
+      <form action="{{ route('role.permission.user') }}" method="POST">
         @csrf
       <div class="modal-body">
-            <div class="form-group">
-              <label>Nama</label>
-              <input type="text" name="name" class="form-control" placeholder="Nama">
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Password">
-            </div>
+        <input type="hidden" name="id_user" value="{{ $user->id }}">
+          <div class="form-group">
+            <label>Role</label>
+            <select class="select2" multiple="multiple" name="roles[]" data-placeholder="Pilih Role" style="width: 100%;">
+              @foreach ($role as $item)
+              <option value="{{ $item->name }}">{{ $item->name }}</option>
+              @endforeach
+            </select>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -106,6 +103,7 @@
 <form id="form-delete" method="POST">
   @csrf
   @method('delete')
+
 </form>
 @push('scripts')
     <script>

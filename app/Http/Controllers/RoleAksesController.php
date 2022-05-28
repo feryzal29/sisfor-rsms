@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -14,7 +15,8 @@ class RoleAksesController extends Controller
      */
     public function index()
     {
-        //
+        $role = Role::all();
+        return view('users.role_permission',compact('role'));
     }
 
     /**
@@ -48,6 +50,18 @@ class RoleAksesController extends Controller
         return redirect()->back()->with(['success'=>'Data Berhasil ditambah']);
     }
 
+    public function addUserPermission(Request $request)
+    {
+        $request->validate([
+            'id_user' => 'required',
+            'roles' => 'required'            
+        ]);
+        $user = User::findOrFail($request->id_user);
+        $user->assignRole([$request->roles]);
+
+        return redirect()->back()->with(['success'=>'Data Berhasil ditambah']);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -55,8 +69,10 @@ class RoleAksesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $user = User::findOrFail($id);
+        $role = Role::whereNotIn('name', $user->getRoleNames())->get();
+        return view('users.role_add',compact('role','user'));
     }
 
     /**
@@ -90,6 +106,19 @@ class RoleAksesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $diklat = Role::findOrfail($id);
+        $diklat->delete();
+        return redirect()->back()->with(['success'=>'Data Berhasil dihapus']);
+    }
+
+    public function deleteUserRole(Request $request){
+        $request->validate([
+            'user_id' => 'required',
+            'role' => 'required'            
+        ]);
+        $user = User::findOrFail($request->user_id);
+        $user->removeRole($request->role);
+
+        return redirect()->back()->with(['success'=>'Data Berhasil dihapus']);
     }
 }

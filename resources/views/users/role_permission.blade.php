@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Data User RS PKU Muhammadiyah Sekapuk</h3>
+              <h3 class="card-title">Data Role Permission RS PKU Muhammadiyah Sekapuk</h3>
               <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">TAMBAH DATA</button>
             </div>
             <!-- /.card-header -->
@@ -36,29 +36,29 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Nama</th>
-                  <th>Email</th>
-                  <th>Action</th>
+                  <th>Name</th>
+                  <th>Guard Name</th>
+                  <th>ACTION</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach ($users as $item)
+                  @foreach ($role as $item)
                   <tr>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->guard_name }}</td>
                     <td>
-                      <a href="{{ route('users.show',$item->id) }}" class="btn btn-success">Edit</a>
-                      <a href="{{ route('role.show',$item->id) }}" class="btn btn-primary">Role</a>
-                      <a href="javascript:;" class="btn btn-danger btn-delete" data-action="{{ route('users.destroy', $item->id) }}">Delete</a>
+                      <a href="" class="btn btn-success">Edit</a>
+                      <a href="javascript:;" class="btn btn-danger btn-delete" data-action="{{ route('role.delete',$item->id) }}">Delete</a>
+                      {{-- <a onclick="return confirm('Are you sure?')" href="{{ route('jenjang.delete', $item->id) }}" class="btn btn-danger">Delete</a> --}}
                     </td>
                   </tr>
                   @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Nama</th>
-                  <th>Email</th>
-                  <th>Action</th>
+                  <th>Name</th>
+                  <th>Guard Name</th>
+                  <th>ACTION</th>
                 </tr>
                 </tfoot>
               </table>
@@ -73,26 +73,23 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">TAMBAH DATA USER</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">TAMBAH DATA BANK</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('users.store') }}" method="POST">
+      <form action="{{ route('role.akses.insert') }}" method="POST">
         @csrf
       <div class="modal-body">
             <div class="form-group">
-              <label>Nama</label>
-              <input type="text" name="name" class="form-control" placeholder="Nama">
+              <label>Name</label>
+              <input type="text" name="name" class="form-control" placeholder="Role Name">
             </div>
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" class="form-control" placeholder="Email">
+              <label>Guard Name</label>
+              <input type="text" name="guard_name" class="form-control" placeholder="Guard Name">
             </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Password">
-            </div>
+            
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -102,7 +99,6 @@
     </div>
   </div>
 </div>
-
 <form id="form-delete" method="POST">
   @csrf
   @method('delete')

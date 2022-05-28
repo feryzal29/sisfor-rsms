@@ -32,6 +32,8 @@
    <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -541,10 +543,27 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/users" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>USER</p>
+                  <p>
+                    USERS
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/users" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>USERS</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('role.akses') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>ROLE AKSES</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -630,6 +649,8 @@
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- bs-custom-file-input -->
 <script src="{{ asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{ asset('adminlte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
 </body>
 
 <script>
