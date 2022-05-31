@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\DB;
 use PDO;
 use Illuminate\Support\Facades\Mail;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class EmployeeController extends Controller
 {
@@ -205,6 +206,19 @@ class EmployeeController extends Controller
     {
         $employee = employee::findOrFail($id);
         return view('users.user_add',compact('employee'));
+    }
+
+    public function kodeqr($id){
+        $employee = employee::findOrFail($id)->get();
+        foreach($employee as $item){
+            $nip = $item->nip;
+            $image = QrCode::format('png')
+                         ->merge('logo.png', 0.3, true)
+                         ->size(500)->errorCorrection('H')
+                         ->generate($nip);
+            return response($image)->header('Content-type','image/png');
+        }
+
     }
 
     public function diklat($id){

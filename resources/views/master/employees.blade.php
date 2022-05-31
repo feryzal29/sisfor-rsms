@@ -124,7 +124,7 @@
                           <a class="dropdown-item" href="{{ route('employee.diklat',$item->id) }}">Data Diklat</a>
                           <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">File Kepegawaian</a>
                           <a class="dropdown-item" href="{{ route('employee.user',$item->id) }}">Buat User</a>
-                          <a class="dropdown-item" href="#">Generate QRcode</a>
+                          <a class="dropdown-item" href="{{ route('employee.kodeqr',$item->id) }}">Generate QRcode</a>
                         </div>
                       </div>
                       {{-- <a onclick="return confirm('Are you sure?')" href="{{ route('jenjang.delete', $item->id) }}" class="btn btn-danger">Delete</a> --}}

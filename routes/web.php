@@ -17,6 +17,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\ResikoKerjaController;
 use App\Http\Controllers\RoleAksesController;
+use App\Http\Controllers\SetAplikasiController;
 use App\Http\Controllers\SttsKerjaController;
 use App\Http\Controllers\SttsWpController;
 use App\Http\Controllers\UnitController;
@@ -28,9 +29,12 @@ use App\Models\EmergencyIndex;
 use App\Models\Pendidikan;
 use App\Models\UnitEmergency;
 use App\Models\User;
+use BaconQrCode\Encoder\QrCode as EncoderQrCode;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeUnit\FunctionUnit;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,6 +91,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::post('employees','store')->middleware('role:admin|sdi');
     Route::get('employees/delete/{id}','destroy')->middleware('role:admin|sdi')->name('employees.delete');
     Route::put('employees/{id}','update')->middleware('role:admin|sdi')->name('employees.update');
+    Route::get('employee/{id}/kodeqr','kodeqr')->name('employee.kodeqr');
 });
 
 Route::controller(EmployeesFileController::class)->group(function () {
@@ -145,6 +150,12 @@ Route::middleware(['role:admin|sdi'])->group(function (){
     Route::resource('users',UserController::class);
 });
 
+Route::controller(SetAplikasiController::class)->group(function (){
+    Route::get('setapp','index')->name('set.aplikasi');
+    Route::post('setapp/insert','store')->name('set.aplikasi.insert');
+});
+
 Route::middleware(['role:admin|diklat'])->group(function (){
     Route::resource('jeniskegiatan',JenisKegiatanController::class);
 });
+

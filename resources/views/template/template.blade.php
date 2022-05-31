@@ -40,7 +40,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{ asset('logo.png') }}" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -499,6 +499,12 @@
                     </a>
                   </li>
                 </ul>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('set.aplikasi') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>SET APLIKASI</p>
+                </a>
               </li>
             </ul>
           </li>
