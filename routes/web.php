@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\AlarmController;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BidangController;
@@ -29,6 +30,7 @@ use App\Models\UnitEmergency;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,73 +46,72 @@ use Illuminate\Support\Facades\Route;
 Route::controller(LoginController::class)->group(function () {
     Route::get('login','index')->name('login');
     Route::post('login','store')->name('login.store');
-    Route::get('logout','logout');
+    Route::get('logout','logout')->name('logout');
 });
 
 
 Route::controller(DashboardController::class)->group(function () {
-    // Route::get('/','index')->middleware('role:admin')->name('admin.page');
-    Route::get('/','index');
+    Route::get('/','index')->middleware('role:user|admin');
 });
 
 Route::controller(UnitController::class)->group(function () {
-    Route::get('unit','index');
-    Route::post('unit','store');
-    Route::put('unit/{unit}','update')->name('unit_update');
-    Route::get('unit/{unit}','show')->name('unit.show');
-    Route::get('unit/delete/{id}','delete')->name('unit.delete');
+    Route::get('unit','index')->middleware('role:admin|sdi');
+    Route::post('unit','store')->middleware('role:admin|sdi');
+    Route::put('unit/{unit}','update')->middleware('role:admin|sdi')->name('unit_update');
+    Route::get('unit/{unit}','show')->middleware('role:admin|sdi')->name('unit.show');
+    Route::get('unit/delete/{id}','delete')->middleware('role:admin|sdi')->name('unit.delete');
 });
 
 Route::controller(JabatanController::class)->group(function () {
-    Route::get('jabatan','index');
-    Route::get('jabatan/{jabatan}','show')->name('jabatan.show');
-    Route::get('jabatan/delete/{id}','delete')->name('jabatan.delete');
-    Route::post('jabatan','store');
-    Route::put('jabatan/{jabatan}','update')->name('jabatan_update');
+    Route::get('jabatan','index')->middleware('role:admin|sdi')->name('unit.delete');
+    Route::get('jabatan/{jabatan}','show')->middleware('role:admin|sdi')->name('jabatan.show');
+    Route::get('jabatan/delete/{id}','delete')->middleware('role:admin|sdi')->name('jabatan.delete');
+    Route::post('jabatan','store')->middleware('role:admin|sdi');
+    Route::put('jabatan/{jabatan}','update')->middleware('role:admin|sdi')->name('jabatan_update');
 });
 
 Route::controller(PendidikanController::class)->group(function () {
-    Route::get('pendidikan','index');
-    Route::get('pendidikan/{pendidikan}','show')->name('pendidikan.show');
-    Route::get('pendidikan/delete/{id}','delete')->name('pendidikan.delete');
-    Route::post('pendidikan','store');
-    Route::put('pendidikan/{pendidikan}','update')->name('pendidikan_update');
+    Route::get('pendidikan','index')->middleware('role:admin|sdi');
+    Route::get('pendidikan/{pendidikan}','show')->middleware('role:admin|sdi')->name('pendidikan.show');
+    Route::get('pendidikan/delete/{id}','delete')->middleware('role:admin|sdi')->name('pendidikan.delete');
+    Route::post('pendidikan','store')->middleware('role:admin|sdi');
+    Route::put('pendidikan/{pendidikan}','update')->middleware('role:admin|sdi')->name('pendidikan_update');
 });
 
 Route::controller(EmployeeController::class)->group(function () {
-    Route::get('employees','index');
-    Route::get('employeeinsert','insertdata');
-    Route::get('employeesedit/{id}','showEdit')->name('employees.show');
-    Route::get('employees/{id}/diklat','diklat')->name('employee.diklat');
-    Route::get('employee/{id}/user','show')->name('employee.user');
-    Route::post('employees','store');
-    Route::get('employees/delete/{id}','destroy')->name('employees.delete');
-    Route::put('employees/{id}','update')->name('employees.update');
+    Route::get('employees','index')->middleware('role:admin|sdi');
+    Route::get('employeeinsert','insertdata')->middleware('role:admin|sdi');
+    Route::get('employeesedit/{id}','showEdit')->middleware('role:admin|sdi')->name('employees.show');
+    Route::get('employees/{id}/diklat','diklat')->middleware('role:admin|sdi')->name('employee.diklat');
+    Route::get('employee/{id}/user','show')->middleware('role:admin|sdi')->name('employee.user');
+    Route::post('employees','store')->middleware('role:admin|sdi');
+    Route::get('employees/delete/{id}','destroy')->middleware('role:admin|sdi')->name('employees.delete');
+    Route::put('employees/{id}','update')->middleware('role:admin|sdi')->name('employees.update');
 });
 
 Route::controller(EmployeesFileController::class)->group(function () {
-    Route::get('employees/{id}/files','show')->name('employees.files');
-    Route::post('employee/upload','store')->name('employees.upload.store');
-    Route::delete('employees/deletefile/{id}','destroy')->name('employees.file.delete');
+    Route::get('employees/{id}/files','show')->middleware('role:admin|sdi')->name('employees.files');
+    Route::post('employee/upload','store')->middleware('role:admin|sdi')->name('employees.upload.store');
+    Route::delete('employees/deletefile/{id}','destroy')->middleware('role:admin|sdi')->name('employees.file.delete');
 });
 
 Route::controller(DiklatController::class)->group(function () {
     //Kegiatan
-    Route::get('diklat','index')->name('diklat.index');
-    Route::get('diklat/{id}','show')->name('diklat.show');
-    Route::post('diklat','store')->name('diklat.store');
-    Route::put('diklat/{diklat}','update')->name('diklat.update');
-    Route::delete('diklat/{id}','destroy')->name('diklat.delete');
+    Route::get('diklat','index')->middleware('role:admin|diklat')->name('diklat.index');
+    Route::get('diklat/{id}','show')->middleware('role:admin|diklat')->name('diklat.show');
+    Route::post('diklat','store')->middleware('role:admin|diklat')->name('diklat.store');
+    Route::put('diklat/{diklat}','update')->middleware('role:admin|diklat')->name('diklat.update');
+    Route::delete('diklat/{id}','destroy')->middleware('role:admin|diklat')->name('diklat.delete');
 
     //absensi
-    Route::get('absensi/{id}/masuk','showAbsensiMasuk')->name('diklat.absen.masuk');
-    Route::get('absensi/{id}/selesai','showAbsensiSelesai')->name('diklat.absen.selesai');
-    Route::get('/absen/{id}/rekap/','RekapAbsensi')->name('diklat.absen.rekap');
+    Route::get('absensi/{id}/masuk','showAbsensiMasuk')->middleware('role:admin|diklat')->name('diklat.absen.masuk');
+    Route::get('absensi/{id}/selesai','showAbsensiSelesai')->middleware('role:admin|diklat')->name('diklat.absen.selesai');
+    Route::get('/absen/{id}/rekap/','RekapAbsensi')->middleware('role:admin|diklat')->name('diklat.absen.rekap');
 });
 
 Route::controller(AbsensiController::class)->group(function (){
-    Route::post('/absen/masuk', 'store')->name('absen.masuk');
-    Route::put('/absen/selesai', 'update')->name('absen.selesai');
+    Route::post('/absen/masuk', 'store')->middleware('role:admin|diklat')->name('absen.masuk');
+    Route::put('/absen/selesai', 'update')->middleware('role:admin|diklat')->name('absen.selesai');
 });
 
 // Route::controller(UserController::class)->group(function () {
@@ -118,23 +119,32 @@ Route::controller(AbsensiController::class)->group(function (){
 //     Route::post('user','store');
 // });
 
-Route::controller(RoleAksesController::class)->group(function (){
-    Route::get('role','index')->name('role.akses');
-    Route::get('role/{id}/show','show')->name('role.show');
-    Route::post('role/tambah','store')->name('role.akses.insert');
-    Route::post('role/permission','addUserPermission')->name('role.permission.user');
-    Route::post('role/permission/delete','deleteUserRole')->name('role.permission.delete');
-    Route::delete('role/{id}','destroy')->name('role.delete');
+Route::controller(AlarmController::class)->group(function (){
+    Route::get('alarmkontrak','AlarmOriented')->name('alarm.orientasi');
 });
 
- Route::resource('kelompok',KelompokJabatanController::class);
- Route::resource('jenjang',JenjangJabatanController::class);
- Route::resource('resikokerja',ResikoKerjaController::class);
- Route::resource('emergencies',UnitEmergencyController::class);
- Route::resource('bidang',BidangController::class);
- Route::resource('statuswp',SttsWpController::class);
- Route::resource('sttskerja',SttsKerjaController::class);
- Route::resource('bank',BankController::class);
- Route::resource('jeniskegiatan',JenisKegiatanController::class);
- 
- Route::resource('users',UserController::class);
+Route::controller(RoleAksesController::class)->group(function (){
+    Route::get('role','index')->middleware('role:admin')->name('role.akses');
+    Route::get('role/{id}/show','show')->middleware('role:admin')->name('role.show');
+    Route::post('role/tambah','store')->middleware('role:admin')->name('role.akses.insert');
+    Route::post('role/permission','addUserPermission')->middleware('role:admin')->name('role.permission.user');
+    Route::post('role/permission/delete','deleteUserRole')->middleware('role:admin')->name('role.permission.delete');
+    Route::delete('role/{id}','destroy')->middleware('role:admin')->name('role.delete');
+});
+
+
+Route::middleware(['role:admin|sdi'])->group(function (){
+    Route::resource('kelompok',KelompokJabatanController::class);
+    Route::resource('jenjang',JenjangJabatanController::class);
+    Route::resource('resikokerja',ResikoKerjaController::class);
+    Route::resource('emergencies',UnitEmergencyController::class);
+    Route::resource('bidang',BidangController::class);
+    Route::resource('statuswp',SttsWpController::class);
+    Route::resource('sttskerja',SttsKerjaController::class);
+    Route::resource('bank',BankController::class);
+    Route::resource('users',UserController::class);
+});
+
+Route::middleware(['role:admin|diklat'])->group(function (){
+    Route::resource('jeniskegiatan',JenisKegiatanController::class);
+});

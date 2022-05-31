@@ -66,6 +66,7 @@
                   <th>Pengurangan</th>
                   <th>Index</th>
                   <th>Mulai Kontrak</th>
+                  <th>Selesai Kontrak</th>
                   <th>Cuti Diambil</th>
                   <th>Dankes</th>
                   <th>No KTP</th>
@@ -106,6 +107,7 @@
                     <td>{{ $item->pengurangan }}</td>
                     <td>{{ $item->index }}</td>
                     <td>{{ $item->mulai_kontrak }}</td>
+                    <td>{{ $item->selesai_kontrak }}</td>
                     <td>{{ $item->cuti_diambil}}</td>
                     <td>{{ $item->dankes }}</td>
                     <td>{{ $item->no_ktp }}</td>
@@ -161,6 +163,7 @@
                   <th>Pengurangan</th>
                   <th>Index</th>
                   <th>Mulai Kontrak</th>
+                  <th>Selesai Kontrak</th>
                   <th>Cuti Diambil</th>
                   <th>Dankes</th>
                   <th>No KTP</th>
