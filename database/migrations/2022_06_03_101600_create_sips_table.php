@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('employees', function (Blueprint $table) {
-            $table->date('selesai_kontrak')->nullable();
+        Schema::create('sips', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('employee_id')->constrained('employees');
+            $table->string('no_sip');
+            $table->date('tgl_terbit');
+            $table->date('tgl_ed');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('employees', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('sips');
     }
 };

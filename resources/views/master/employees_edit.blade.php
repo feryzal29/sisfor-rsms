@@ -220,15 +220,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                      <label>Selesai Kontrak</label>
-                        <div class="input-group date" id="reservationdate4" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" name="mulai_kontrak" data-target="#reservationdate4" value="{{ date('d/m/Y',strtotime($employee->selesai_kontrak))}}"/>
-                            <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
                       <label>Cuti Diambil</label>
                       <input type="number" name="cuti" class="form-control" value="{{ $employee->cuti_diambil }}">
                     </div>

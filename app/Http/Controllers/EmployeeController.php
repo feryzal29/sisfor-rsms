@@ -48,8 +48,12 @@ class EmployeeController extends Controller
                 'pendidikan',
                 'indexing',
                 'stts_kerja',
-                'emergency'
+                'emergency',
+                'str',
+                'sip'
         ])->get();
+
+        //dd($employees->pluck('str'));
 
         $employee = [];
         foreach($employees as $key=>$items){
@@ -140,8 +144,7 @@ class EmployeeController extends Controller
             'dankes'=>'required',
             'no_ktp'=>'required',
             'email'=>'required',
-            'no_telp'=>'required',
-            'selesai_kontrak'=>'required'
+            'no_telp'=>'required'
         ]);
 
         $tgl_lahir = $request->tgl_lahir;
@@ -152,9 +155,6 @@ class EmployeeController extends Controller
 
         $kontrak = $request->mulai_kontrak;
         $kontrakstr = date('Y-m-d',strtotime($kontrak));
-
-        $selesai_kontrak = $request->selesai_kontrak;
-        $selesai_kontrakstr = date('Y-m-d',strtotime($selesai_kontrak));
         $employee = employee::create([
             'nip' => $request->nip,
             'nama' => $request->nama,
@@ -190,7 +190,6 @@ class EmployeeController extends Controller
             'no_ktp' => $request->no_ktp,
             'email' => $request->email,
             'no_telp' => $request->no_telp,
-            'selesai_kontrak' => $selesai_kontrakstr
         ]);
 
         return redirect('employees')->with(['success'=>'Data Berhasil ditambah']);
@@ -329,8 +328,7 @@ class EmployeeController extends Controller
             'dankes'=>'required',
             'no_ktp'=>'required',
             'email'=>'required',
-            'no_telp'=>'required',
-            'selesai_kontrak'=>'required'
+            'no_telp'=>'required'
         ]);
 
         $tgl_lahir = $request->tgl_lahir;
@@ -341,9 +339,6 @@ class EmployeeController extends Controller
 
         $kontrak = $request->mulai_kontrak;
         $kontrakstr = date('Y-m-d',strtotime($kontrak));
-
-        $selesai_kontrak = $request->selesai_kontrak;
-        $selesai_kontrakstr = date('Y-m-d',strtotime($selesai_kontrak));
         
         $employee = employee::findOrFail($id); 
 
@@ -381,8 +376,7 @@ class EmployeeController extends Controller
             'dankes' => $request->dankes,
             'no_ktp' => $request->no_ktp,
             'email' => $request->email,
-            'no_telp' => $request->no_telp,
-            'selesai_kontrak' => $selesai_kontrakstr
+            'no_telp' => $request->no_telp
         ]);
        
         return redirect('/employees')->with(['success'=>'Data Berhasil diganti']);

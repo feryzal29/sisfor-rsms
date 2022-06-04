@@ -76,4 +76,17 @@ class employee extends Model
     public function files(){
         return $this->hasMany(EmployeesFile::class,'employee_id','id');
     }
+
+    public function str(){
+        return $this->hasOne(Str::class,'employee_id','id')->withDefault([
+            'no_str'=>'-',
+            'tgl_terbit'=>'00-Jan-0000',
+            'tgl_ed'=>'00-Jan-0000'
+
+        ]);
+    }
+
+    public function sip(){
+        return $this->hasOne(Sip::class,'employee_id','id')->withDefault();
+    }
 }

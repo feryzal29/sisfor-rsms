@@ -72,6 +72,9 @@
                   <th>No KTP</th>
                   <th>Email</th>
                   <th>No. telp</th>
+                  <th>No. STR</th>
+                  <th>Tgl. Terbit</th>
+                  <th>No. ED</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -93,11 +96,11 @@
                     <td>{{ $item->npwp }}</td>
                     <td>{{ $item->pendidikan->tingkat }}</td>
                     <td>{{ $item->gapok }}</td>
-                    <td>{{ $item->tgl_lahir }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->tgl_lahir)) }}</td>
                     <td>{{ $item->tmp_lahir}}</td>
                     <td>{{ $item->alamat }}</td>
                     <td>{{ $item->kota }}</td>
-                    <td>{{ $item->mulai_kerja }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->mulai_kerja)) }}</td>
                     <td>{{ $item->masa_kerja }} </td>
                     <td>{{ $item->indexings }}</td>
                     <td>{{ $item->bank->nama }}</td>
@@ -113,9 +116,12 @@
                     <td>{{ $item->no_ktp }}</td>
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->no_telp }}</td>
+                    <td>{{ $item->str->no_str }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->str->tgl_terbit)) }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->str->tgl_ed)) }}</td>
                     <td>
                       <a href="{{ route('employees.show', $item->id) }}" class="btn btn-success">Edit</a>
-                      <a onclick="return confirm('Are you sure?')" href="{{ route('employees.delete', $item->id) }}" class="btn btn-danger">Delete</a>
+                      <a onclick="return confirm('Are you sure?')" href="#" class="btn btn-danger">Delete</a>
                       <div class="dropdown show float-right">
                         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
                           Lain-lain
@@ -123,6 +129,8 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                           <a class="dropdown-item" href="{{ route('employee.diklat',$item->id) }}">Data Diklat</a>
                           <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">File Kepegawaian</a>
+                          <a class="dropdown-item" href="{{ route('employees.str',$item->id) }}">STR</a>
+                          <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">SIP</a>
                           <a class="dropdown-item" href="{{ route('employee.user',$item->id) }}">Buat User</a>
                           <a class="dropdown-item" href="{{ route('employee.kodeqr',$item->id) }}">Generate QRcode</a>
                         </div>
@@ -169,6 +177,9 @@
                   <th>No KTP</th>
                   <th>Email</th>
                   <th>No. telp</th>
+                  <th>No. STR</th>
+                  <th>Tgl. Terbit</th>
+                  <th>No. ED</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>
@@ -180,36 +191,12 @@
   </section>
   <!-- /.content -->
 </div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">TAMBAH DATA BANK</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="bank" method="POST">
-        @csrf
-      <div class="modal-body">
-            <div class="form-group">
-              <label>Nama Bank</label>
-              <input type="text" name="nama" class="form-control" placeholder="Nama Bidang">
-            </div>
-            
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" value="SIMPAN">
-      </div>
-    </form>
-    </div>
-  </div>
-</div>
 <form id="form-delete" method="POST">
   @csrf
   @method('delete')
 </form>
+
+
 @push('scripts')
     <script>
         $(document).ready(function () {

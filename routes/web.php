@@ -18,6 +18,7 @@ use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\ResikoKerjaController;
 use App\Http\Controllers\RoleAksesController;
 use App\Http\Controllers\SetAplikasiController;
+use App\Http\Controllers\StrController;
 use App\Http\Controllers\SttsKerjaController;
 use App\Http\Controllers\SttsWpController;
 use App\Http\Controllers\UnitController;
@@ -100,6 +101,14 @@ Route::controller(EmployeesFileController::class)->group(function () {
     Route::delete('employees/deletefile/{id}','destroy')->middleware('role:admin|sdi')->name('employees.file.delete');
 });
 
+Route::controller(StrController::class)->group(function () {
+    Route::get('employees/{id}/str','show')->name('employees.str');
+    Route::get('employees/{id}/showstr','showUpdate')->name('employee.str.show');
+    Route::post('employee/str/upload','store')->name('employees.str.upload');
+    Route::put('employee/{str}','update')->name('employee.str.update');
+    Route::get('employees/delete/{id}','destroy')->middleware('role:admin|sdi')->name('str.delete');
+});
+
 Route::controller(DiklatController::class)->group(function () {
     //Kegiatan
     Route::get('diklat','index')->middleware('role:admin|diklat')->name('diklat.index');
@@ -159,3 +168,6 @@ Route::middleware(['role:admin|diklat'])->group(function (){
     Route::resource('jeniskegiatan',JenisKegiatanController::class);
 });
 
+Route::get('profile', function(){
+    dd(Auth::user()->employee);
+});
