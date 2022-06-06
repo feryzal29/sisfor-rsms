@@ -90,7 +90,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('employees/{id}/diklat','diklat')->middleware('role:admin|sdi')->name('employee.diklat');
     Route::get('employee/{id}/user','show')->middleware('role:admin|sdi')->name('employee.user');
     Route::post('employees','store')->middleware('role:admin|sdi');
-    Route::get('employees/delete/{id}','destroy')->middleware('role:admin|sdi')->name('employees.delete');
+    Route::get('employees/delete/{id}','destroy')->middleware('role:admin|sdi')->name('employee.delete');
     Route::put('employees/{id}','update')->middleware('role:admin|sdi')->name('employees.update');
     Route::get('employee/{id}/kodeqr','kodeqr')->name('employee.kodeqr');
 });
@@ -106,7 +106,7 @@ Route::controller(StrController::class)->group(function () {
     Route::get('employees/{id}/showstr','showUpdate')->name('employee.str.show');
     Route::post('employee/str/upload','store')->name('employees.str.upload');
     Route::put('employee/{str}','update')->name('employee.str.update');
-    Route::get('employees/delete/{id}','destroy')->middleware('role:admin|sdi')->name('str.delete');
+    Route::get('employees/delete/str/{id}','destroy')->middleware('role:admin|sdi')->name('str.delete');
 });
 
 Route::controller(DiklatController::class)->group(function () {

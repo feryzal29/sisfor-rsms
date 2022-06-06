@@ -75,6 +75,9 @@
                   <th>No. STR</th>
                   <th>Tgl. Terbit</th>
                   <th>No. ED</th>
+                  <th>No. SIP</th>
+                  <th>Tgl. Terbit</th>
+                  <th>No. ED</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -119,9 +122,13 @@
                     <td>{{ $item->str->no_str }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->str->tgl_terbit)) }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->str->tgl_ed)) }}</td>
+                    <td>{{ $item->str->no_str }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->str->tgl_terbit)) }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->str->tgl_ed)) }}</td>
                     <td>
                       <a href="{{ route('employees.show', $item->id) }}" class="btn btn-success">Edit</a>
-                      <a onclick="return confirm('Are you sure?')" href="#" class="btn btn-danger">Delete</a>
+                      <a onclick="return confirm('Are you sure?')" href="{{ route('employee.delete',$item->id) }}" class="btn btn-danger">Delete</a>
+                      {{-- <a href="javascript:;" class="btn btn-danger btn-delete" data-action="{{ route('employee.delete', $item->id) }}">Delete</a> --}}
                       <div class="dropdown show float-right">
                         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
                           Lain-lain
@@ -180,6 +187,9 @@
                   <th>No. STR</th>
                   <th>Tgl. Terbit</th>
                   <th>No. ED</th>
+                  <th>No. SIP</th>
+                  <th>Tgl. Terbit</th>
+                  <th>No. ED</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>
@@ -195,12 +205,11 @@
   @csrf
   @method('delete')
 </form>
-
-
 @push('scripts')
     <script>
         $(document).ready(function () {
           $('.btn-delete').on('click', function () {
+            console.log("data");
             let action = $(this).data('action');
             let xxx = confirm('Apakah anda ingin menghapus data ini ?');
             $('#form-delete').removeAttr('action');
