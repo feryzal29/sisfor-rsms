@@ -126,6 +126,19 @@
                       </select>
                     </div>
                     <div class="form-group">
+                      <label>Asal Sekolah</label>
+                      <input type="text" name="sekolah" class="form-control" value="{{ $employee->sekolah }}">
+                    </div>
+                    <div class="form-group">
+                      <label>Tahun Lulus</label>
+                        <div class="input-group date" id="reservationdate5" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" name="tahun_lulus" data-target="#reservationdate5" value="{{ date('d/m/Y',strtotime($employee->tgl_lahir))}}"/>
+                            <div class="input-group-append" data-target="#reservationdate5" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                       <label>Gaji Pokok</label>
                       <input type="number" name="gapok" class="form-control" value="{{ $employee->gapok }}">
                     </div>
@@ -266,6 +279,9 @@
         format: 'L'
     });
     $('#reservationdate4').datetimepicker({
+        format: 'L'
+    });
+    $('#reservationdate5').datetimepicker({
         format: 'L'
     });
   });

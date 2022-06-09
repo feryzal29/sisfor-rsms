@@ -26,7 +26,8 @@ class employee extends Model
      'wajib_masuk','pengurangan',
      'index','mulai_kontrak',
      'cuti_diambil','dankes',
-     'no_ktp','email','no_telp'
+     'no_ktp','email','no_telp',
+     'sekolah','tahun_lulus'
     ];
 
     public function jenjang(){
@@ -87,6 +88,11 @@ class employee extends Model
     }
 
     public function sip(){
-        return $this->hasOne(Sip::class,'employee_id','id')->withDefault();
+        return $this->hasOne(Sip::class,'employee_id','id')->withDefault([
+            'no_sip'=>'-',
+            'tgl_terbit'=>'00-Jan-0000',
+            'tgl_ed'=>'00-Jan-0000'
+        ]);
     }
+
 }

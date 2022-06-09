@@ -124,6 +124,19 @@
                       </select>
                     </div>
                     <div class="form-group">
+                      <label>Asal Sekolah</label>
+                      <input type="text" name="sekolah" class="form-control" placeholder="Asal Sekolah">
+                    </div>
+                    <div class="form-group">
+                      <label>Tahun Lulus</label>
+                        <div class="input-group date" id="reservationdate5" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" name="tahun_lulus" data-target="#reservationdate5"/>
+                            <div class="input-group-append" data-target="#reservationdate5" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                       <label>Gaji Pokok</label>
                       <input type="number" name="gapok" class="form-control" placeholder="Gaji Pokok">
                     </div>
@@ -262,6 +275,9 @@
         format: 'L'
     });
     $('#reservationdate4').datetimepicker({
+        format: 'L'
+    });
+    $('#reservationdate5').datetimepicker({
         format: 'L'
     });
   });

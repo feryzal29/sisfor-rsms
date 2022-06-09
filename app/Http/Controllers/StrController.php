@@ -89,6 +89,7 @@ class StrController extends Controller
         $str = Str::findOrFail($id);
         return view('sdi.str_edit',compact('str'));
     }
+    
     public function edit(Str $str)
     {
         //

@@ -51,6 +51,8 @@
                   <th>Status Kerja</th>
                   <th>NPWP</th>
                   <th>Pendidikan</th>
+                  <th>Asal Sekolah</th>
+                  <th>Tahun Lulus</th>
                   <th>Gaji Pokok</th>
                   <th>tanggal Lahir</th>
                   <th>Tempat Lahir</th>
@@ -66,7 +68,6 @@
                   <th>Pengurangan</th>
                   <th>Index</th>
                   <th>Mulai Kontrak</th>
-                  <th>Selesai Kontrak</th>
                   <th>Cuti Diambil</th>
                   <th>Dankes</th>
                   <th>No KTP</th>
@@ -98,6 +99,8 @@
                     <td>{{ $item->stts_kerja }}</td>
                     <td>{{ $item->npwp }}</td>
                     <td>{{ $item->pendidikan->tingkat }}</td>
+                    <td>{{ $item->sekolah }}</td>
+                    <td>{{ $item->tahun_lulus }}</td>
                     <td>{{ $item->gapok }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->tgl_lahir)) }}</td>
                     <td>{{ $item->tmp_lahir}}</td>
@@ -113,7 +116,6 @@
                     <td>{{ $item->pengurangan }}</td>
                     <td>{{ $item->index }}</td>
                     <td>{{ $item->mulai_kontrak }}</td>
-                    <td>{{ $item->selesai_kontrak }}</td>
                     <td>{{ $item->cuti_diambil}}</td>
                     <td>{{ $item->dankes }}</td>
                     <td>{{ $item->no_ktp }}</td>
@@ -122,9 +124,9 @@
                     <td>{{ $item->str->no_str }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->str->tgl_terbit)) }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->str->tgl_ed)) }}</td>
-                    <td>{{ $item->str->no_str }}</td>
-                    <td>{{ date('d-M-Y',strtotime($item->str->tgl_terbit)) }}</td>
-                    <td>{{ date('d-M-Y',strtotime($item->str->tgl_ed)) }}</td>
+                    <td>{{ $item->sip->no_sip }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->sip->tgl_terbit)) }}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->sip->tgl_ed)) }}</td>
                     <td>
                       <a href="{{ route('employees.show', $item->id) }}" class="btn btn-success">Edit</a>
                       <a onclick="return confirm('Are you sure?')" href="{{ route('employee.delete',$item->id) }}" class="btn btn-danger">Delete</a>
@@ -137,7 +139,7 @@
                           <a class="dropdown-item" href="{{ route('employee.diklat',$item->id) }}">Data Diklat</a>
                           <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">File Kepegawaian</a>
                           <a class="dropdown-item" href="{{ route('employees.str',$item->id) }}">STR</a>
-                          <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">SIP</a>
+                          <a class="dropdown-item" href="{{ route('employees.sip',$item->id) }}">SIP</a>
                           <a class="dropdown-item" href="{{ route('employee.user',$item->id) }}">Buat User</a>
                           <a class="dropdown-item" href="{{ route('employee.kodeqr',$item->id) }}">Generate QRcode</a>
                         </div>
@@ -163,6 +165,8 @@
                   <th>Status Kerja</th>
                   <th>NPWP</th>
                   <th>Pendidikan</th>
+                  <th>Asal Sekolah</th>
+                  <th>Tahun Lulus</th>
                   <th>Gaji Pokok</th>
                   <th>tanggal Lahir</th>
                   <th>Tempat Lahir</th>
@@ -178,7 +182,6 @@
                   <th>Pengurangan</th>
                   <th>Index</th>
                   <th>Mulai Kontrak</th>
-                  <th>Selesai Kontrak</th>
                   <th>Cuti Diambil</th>
                   <th>Dankes</th>
                   <th>No KTP</th>

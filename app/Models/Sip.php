@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sip extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
     protected $fillable = 
     ['employee_id','no_sip','tgl_terbit','tgl_ed'];
 }

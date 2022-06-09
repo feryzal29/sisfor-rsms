@@ -17,7 +17,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\ResikoKerjaController;
 use App\Http\Controllers\RoleAksesController;
+use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SetAplikasiController;
+use App\Http\Controllers\SipController;
 use App\Http\Controllers\StrController;
 use App\Http\Controllers\SttsKerjaController;
 use App\Http\Controllers\SttsWpController;
@@ -83,6 +85,14 @@ Route::controller(PendidikanController::class)->group(function () {
     Route::put('pendidikan/{pendidikan}','update')->middleware('role:admin|sdi')->name('pendidikan_update');
 });
 
+Route::controller(SekolahController::class)->group(function (){
+    Route::get('sekolah','index')->name('sekolah');
+    Route::get('sekolah/{id}/show','show')->name('sekolah.show');
+    Route::get('sekolah/{id}/delete','destroy')->name('sekolah.destroy');
+    Route::post('sekolah/post','store')->name('sekolah.store');
+    Route::put('sekolah/{sekolah}','update')->name('sekolah.update');
+});
+
 Route::controller(EmployeeController::class)->group(function () {
     Route::get('employees','index')->middleware('role:admin|sdi');
     Route::get('employeeinsert','insertdata')->middleware('role:admin|sdi');
@@ -105,8 +115,16 @@ Route::controller(StrController::class)->group(function () {
     Route::get('employees/{id}/str','show')->name('employees.str');
     Route::get('employees/{id}/showstr','showUpdate')->name('employee.str.show');
     Route::post('employee/str/upload','store')->name('employees.str.upload');
-    Route::put('employee/{str}','update')->name('employee.str.update');
+    Route::put('employee/{str}/strupdate','update')->name('employee.str.update');
     Route::get('employees/delete/str/{id}','destroy')->middleware('role:admin|sdi')->name('str.delete');
+});
+
+Route::controller(SipController::class)->group(function () {
+    Route::get('employees/{id}/sip','show')->name('employees.sip');
+    Route::get('employees/{id}/showsip','showUpdate')->name('employee.sip.show');
+    Route::post('employees/sip/upload','store')->name('employees.sip.upload');
+    Route::put('employees/{sip}/sip','update')->name('employee.sip.update');
+    Route::get('employees/delete/sip/{id}','destroy')->middleware('role:admin|sdi')->name('sip.delete');
 });
 
 Route::controller(DiklatController::class)->group(function () {

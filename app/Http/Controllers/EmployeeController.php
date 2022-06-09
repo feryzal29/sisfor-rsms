@@ -155,6 +155,9 @@ class EmployeeController extends Controller
 
         $kontrak = $request->mulai_kontrak;
         $kontrakstr = date('Y-m-d',strtotime($kontrak));
+
+        $tahun_lulus = $request->tahun_lulus;
+        $tahun_lulusstr = date('Y-m-d',strtotime($tahun_lulus));
         $employee = employee::create([
             'nip' => $request->nip,
             'nama' => $request->nama,
@@ -190,6 +193,8 @@ class EmployeeController extends Controller
             'no_ktp' => $request->no_ktp,
             'email' => $request->email,
             'no_telp' => $request->no_telp,
+            'sekolah'=>$request->sekolah,
+            'tahun_lulus'=>$tahun_lulusstr
         ]);
 
         return redirect('employees')->with(['success'=>'Data Berhasil ditambah']);
@@ -339,6 +344,9 @@ class EmployeeController extends Controller
 
         $kontrak = $request->mulai_kontrak;
         $kontrakstr = date('Y-m-d',strtotime($kontrak));
+
+        $tahun_lulus = $request->tahun_lulus;
+        $tahun_lulusstr = date('Y-m-d',strtotime($tahun_lulus));
         
         $employee = employee::findOrFail($id); 
 
@@ -376,7 +384,9 @@ class EmployeeController extends Controller
             'dankes' => $request->dankes,
             'no_ktp' => $request->no_ktp,
             'email' => $request->email,
-            'no_telp' => $request->no_telp
+            'no_telp' => $request->no_telp,
+            'sekolah'=>$request->sekolah,
+            'tahun_lulus'=>$tahun_lulusstr
         ]);
        
         return redirect('/employees')->with(['success'=>'Data Berhasil diganti']);

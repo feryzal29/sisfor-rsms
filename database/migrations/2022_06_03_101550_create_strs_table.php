@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('tgl_ed');
             $table->softDeletes();
             $table->timestamps();
+            $table->unique('employee_id');
         });
     }
 

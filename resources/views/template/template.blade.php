@@ -372,6 +372,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="{{ route('sekolah') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>ASAL SEKOLAH</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="/kelompok" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>KELOMPOK</p>
