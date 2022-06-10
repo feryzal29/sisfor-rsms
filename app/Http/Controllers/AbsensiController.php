@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use App\Models\Diklat;
 use App\Models\employee;
+use DateTime;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AbsensiController extends Controller
 {
@@ -74,6 +76,30 @@ class AbsensiController extends Controller
 
         return redirect()->back()->with(['success'=>'Absen Masuk']);
 
+    }
+
+    public function manual(Request $request){
+        $request->validate([
+            'diklat' => 'required',
+            'id'=> 'required'
+        ]);
+
+        $masuk =  date('Y-m-d H:i:s',strtotime($request->masuk));
+
+        $selesai = date('Y-m-d H:i:s',strtotime($request->selesai));
+
+        $id = $request->id;
+        
+        foreach($id as $item){
+            $absensi = Absensi::create([
+                'diklat_id'=>$request->diklat,
+                'employee_id'=>$item,
+                'masuk_at'=>$masuk,
+                'selesai_at'=>$selesai
+            ]);
+        }
+        
+        return redirect()->back()->with(['success'=>'Absen Berhasil DItambah']);
     }
 
     /**

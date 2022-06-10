@@ -38,6 +38,7 @@
                 <tr>
                   <th>Nama FIle</th>
                   <th>File</th>
+                  <th>Tanggal upload</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -46,6 +47,7 @@
                   <tr>
                     <td>{{ $item->nama }}</td>
                     <td><a href="{{ asset('storage/'.$item->path) }}">view</a></td>
+                    <td>{{ date('d-M-Y',strtotime($item->created_at)) }}</td>
                     <td>
                       <a href="javascript:;" class="btn btn-danger btn-delete" data-action="{{ route('employees.file.delete',$item->id) }}">Delete</a>
                       {{-- <a onclick="return confirm('Are you sure?')" href="{{ route('jenjang.delete', $item->id) }}" class="btn btn-danger">Delete</a> --}}
@@ -57,6 +59,7 @@
                 <tr>
                   <th>Nama FIle</th>
                   <th>File</th>
+                  <th>Tanggal upload</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>

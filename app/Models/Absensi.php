@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Absensi extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
     protected $fillable = 
     ['diklat_id','employee_id','masuk_at','selesai_at','date'];
 

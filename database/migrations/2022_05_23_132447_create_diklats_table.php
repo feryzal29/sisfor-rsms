@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('jenis_kegiatans_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('tempat',100);
             $table->date('tanggal');
-            $table->softDeletes();
             $table->timestamps();
         });
 

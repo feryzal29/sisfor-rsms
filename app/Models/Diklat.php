@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Diklat extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     protected $fillable = [
         'units_id',
         'nama',
         'jenis_kegiatans_id',
         'tempat',
-        'tanggal'
+        'tanggal',
+        'tanggal2'
     ];
     protected $dates = ['deleted_at'];
 

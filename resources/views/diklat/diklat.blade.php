@@ -40,7 +40,8 @@
                   <th>Kegiatan</th>
                   <th>Jenis Kegiatan</th>
                   <th>Tempat</th>
-                  <th>Tanggal</th>
+                  <th>Tanggal Mulai</th>
+                  <th>Tanggal Selesai</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -52,6 +53,7 @@
                     <td>{{ $item->kegiatan->nama }}</td>
                     <td>{{ $item->tempat }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->tanggal))}}</td>
+                    <td>{{ date('d-M-Y',strtotime($item->tanggal2))}}</td>
                     <td>
                       <a href="{{ route('diklat.show',$item->id) }}" class="btn btn-success float-left" style="margin-right: 5px">Edit</a>
                       <a href="javascript:;" class="btn btn-danger btn-delete float-left" style="margin-right: 5px" data-action="{{ route('diklat.delete',$item->id) }}">Delete</a>
@@ -63,6 +65,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                           <a class="dropdown-item" href="{{ route('diklat.absen.masuk',$item->id) }}">Masuk</a>
                           <a class="dropdown-item" href="{{ route('diklat.absen.selesai',$item->id) }}">Pulang</a>
+                          <a class="dropdown-item" href="{{ route('diklat.absen.manual',$item->id) }}">Manual</a>
                           <a class="dropdown-item" href="{{ route('diklat.absen.rekap',$item->id) }}">Rekap Absensi </a>
                         </div>
                       </div>
@@ -76,7 +79,8 @@
                   <th>Kegiatan</th>
                   <th>Jenis Kegiatan</th>
                   <th>Tempat</th>
-                  <th>Tanggal</th>
+                  <th>Tanggal Mulai</th>
+                  <th>Tanggal Selesai</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>
@@ -125,10 +129,19 @@
               <input type="text" name="tempat" class="form-control" placeholder="Tempat Kegiatan">
             </div>
             <div class="form-group">
-              <label>Tanggal kegiatan</label>
+              <label>Tanggal kegiatan Mulai</label>
                 <div class="input-group date" id="tgl_kegitan" data-target-input="nearest">
                     <input type="text" class="form-control datetimepicker-input" name="tanggal" data-target="#tgl_kegitan"/>
                     <div class="input-group-append" data-target="#tgl_kegitan" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label>Tanggal kegiatan Selesai</label>
+                <div class="input-group date" id="tgl_kegitan2" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" name="tanggal2" data-target="#tgl_kegitan2"/>
+                    <div class="input-group-append" data-target="#tgl_kegitan2" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                 </div>
@@ -164,6 +177,10 @@
           $('#tgl_kegitan').datetimepicker({
               format: 'L'
           });
+          $('#tgl_kegitan2').datetimepicker({
+              format: 'L'
+          });
+          
           $('.select2').select2()
 
           //Initialize Select2 Elements

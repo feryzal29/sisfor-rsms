@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Absensi Masuk Kegiatan {{ $diklat->nama }} Masuk RS PKU Muhammadiyah Sekapuk</h3>
+              <h3 class="card-title">Absensi Pulang Kegiatan {{ $diklat->nama }} RS PKU Muhammadiyah Sekapuk</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -48,7 +48,7 @@
           </div>
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Rekap Absensi Masuk</h3>
+              <h3 class="card-title">Rekap Absensi Pulang</h3>
             </div>
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">

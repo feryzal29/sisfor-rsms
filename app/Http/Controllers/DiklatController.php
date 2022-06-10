@@ -50,23 +50,29 @@ class DiklatController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'units_id'=>'required',
             'nama'=>'required',
             'jenis_kegiatans_id'=>'required',
             'tempat'=>'required',
-            'tanggal'=>'required'
-        ]);   
+            'tanggal'=>'required',
+            'tanggal2'=>'required'
+        ]);  
 
         $tgl = $request->tanggal;
         $tgl_str = date('Y-m-d',strtotime($tgl));
+
+        $tgl2 = $request->tanggal2;
+        $tgl2_str = date('Y-m-d',strtotime($tgl2));
 
         $diklat = Diklat::create([
             'units_id' => $request->units_id,
             'nama' => $request->nama,
             'jenis_kegiatans_id' => $request->jenis_kegiatans_id,
             'tempat' => $request->tempat,
-            'tanggal' => $tgl_str
+            'tanggal' => $tgl_str,
+            'tanggal2' => $tgl2_str
         ]);
 
         return redirect()->back()->with(['success'=>'Data Berhasil ditambah']);
@@ -107,6 +113,13 @@ class DiklatController extends Controller
     public function showAbsensiMasuk($id){
         $diklat = Diklat::find($id);
         return view('diklat.absensi_masuk',compact('id','diklat'));
+    }
+
+    public function showAbsensiManual($id){
+        $diklat = Diklat::find($id);
+        $absen = Absensi::where('diklat_id',$id)->get();
+        $employees = employee::all();
+        return view('diklat.absensi_manual',compact('id','diklat','absen','employees'));
     }
 
     public function showAbsensiSelesai($id){

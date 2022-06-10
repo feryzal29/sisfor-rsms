@@ -20,7 +20,6 @@ return new class extends Migration
             $table->dateTime('masuk_at');
             $table->dateTime('selesai_at')->nullable();
             $table->date('date');
-            $table->softDeletes();
             $table->timestamps();
         });
     }

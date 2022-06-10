@@ -98,6 +98,7 @@ Route::controller(EmployeeController::class)->group(function () {
     Route::get('employeeinsert','insertdata')->middleware('role:admin|sdi');
     Route::get('employeesedit/{id}','showEdit')->middleware('role:admin|sdi')->name('employees.show');
     Route::get('employees/{id}/diklat','diklat')->middleware('role:admin|sdi')->name('employee.diklat');
+    Route::get('employees/{id}/diklatex','diklatEx')->name('employee.diklatEx');
     Route::get('employee/{id}/user','show')->middleware('role:admin|sdi')->name('employee.user');
     Route::post('employees','store')->middleware('role:admin|sdi');
     Route::get('employees/delete/{id}','destroy')->middleware('role:admin|sdi')->name('employee.delete');
@@ -138,11 +139,13 @@ Route::controller(DiklatController::class)->group(function () {
     //absensi
     Route::get('absensi/{id}/masuk','showAbsensiMasuk')->middleware('role:admin|diklat')->name('diklat.absen.masuk');
     Route::get('absensi/{id}/selesai','showAbsensiSelesai')->middleware('role:admin|diklat')->name('diklat.absen.selesai');
+    Route::get('absensi/{id}/manual','showAbsensiManual')->name('diklat.absen.manual');
     Route::get('/absen/{id}/rekap/','RekapAbsensi')->middleware('role:admin|diklat')->name('diklat.absen.rekap');
 });
 
 Route::controller(AbsensiController::class)->group(function (){
     Route::post('/absen/masuk', 'store')->middleware('role:admin|diklat')->name('absen.masuk');
+    Route::post('/absen/manual','manual')->name('absen.manual');
     Route::put('/absen/selesai', 'update')->middleware('role:admin|diklat')->name('absen.selesai');
 });
 

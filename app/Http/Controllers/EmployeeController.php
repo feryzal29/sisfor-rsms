@@ -7,6 +7,7 @@ use App\Models\Absensi;
 use App\Models\Bank;
 use App\Models\Bidang;
 use App\Models\employee;
+use App\Models\JenisKegiatan;
 use App\Models\JenjangJabatan;
 use App\Models\KelompokJabatan;
 use App\Models\Pendidikan;
@@ -227,9 +228,15 @@ class EmployeeController extends Controller
 
     public function diklat($id){
         $employee = employee::findOrFail($id);
-        $absen = Absensi::where('employee_id',$id)->get();
-        return view('diklat.employees_diklat',compact('employee','absen'));
-        
+        $absen = Absensi::where('employee_id',$id)
+                ->whereNotNull('selesai_at')->get();
+        return view('diklat.employees_diklat',compact('employee','absen'));     
+    }
+
+    public function diklatEx($id){
+        $employee = employee::findOrFail($id);
+        $jenis = JenisKegiatan::all();
+        return view('master.diklat.diklatEx',compact('employee','jenis'));
     }
 
     public function showEdit($id){
