@@ -79,6 +79,7 @@
                   <th>No. SIP</th>
                   <th>Tgl. Terbit</th>
                   <th>No. ED</th>
+                  <th>Total Waktu Diklat</th>
                   <th>Tanggal Dibuat</th>
                   <th>Tanggal Terupdate</th>
                   <th>Action</th>
@@ -129,6 +130,7 @@
                     <td>{{ $item->sip->no_sip }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->sip->tgl_terbit)) }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->sip->tgl_ed)) }}</td>
+                    <td>{{ $item->total_waktu }} <b>Jam</b></td>
                     <td>{{ date('d-M-Y',strtotime($item->created_at)) }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->updated_at)) }}</td>
                     <td>
@@ -140,7 +142,6 @@
                           Lain-lain
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="{{ route('employee.diklatEx',$item->id) }}">Tambah Diklat EX HT</a>
                           <a class="dropdown-item" href="{{ route('employee.diklat',$item->id) }}">Data Diklat</a>
                           <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">File Kepegawaian</a>
                           <a class="dropdown-item" href="{{ route('employees.str',$item->id) }}">STR</a>
@@ -198,6 +199,7 @@
                   <th>No. SIP</th>
                   <th>Tgl. Terbit</th>
                   <th>No. ED</th>
+                  <th>Total Waktu Diklat</th>
                   <th>Tanggal Dibuat</th>
                   <th>Tanggal Terupdate</th>
                   <th>Action</th>

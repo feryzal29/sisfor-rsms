@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained('employees')->onUpdate('cascade')->onDelete('cascade');
             $table->dateTime('masuk_at');
             $table->dateTime('selesai_at')->nullable();
+            $table->integer('total_waktu');
             $table->date('date');
             $table->timestamps();
         });

@@ -47,6 +47,10 @@ return new class extends Migration
             $table->integer('cuti_diambil');
             $table->double('dankes');
             $table->string('no_ktp',20);
+            $table->string('email');
+            $table->string('no_telp');
+            $table->string('sekolah')->nullable();
+            $table->date('tahun_lulus')->nullable();
             $table->timestamps();
             $table->softDeletes()->nullable();
 

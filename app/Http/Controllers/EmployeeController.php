@@ -51,14 +51,22 @@ class EmployeeController extends Controller
                 'stts_kerja',
                 'emergency',
                 'str',
-                'sip'
+                'sip',
+                'JamDiklat'
         ])->get();
+
 
         //dd($employees->pluck('str'));
 
         $employee = [];
-        foreach($employees as $key=>$items){
+        foreach($employees as $items){
             $items->masa_kerja = Carbon::parse($items->mulai_kerja)->diffForHumans(now(), ['syntax' => 1, 'parts' => 3]);
+            $items->total_waktu = $items->JamDiklat->sum('total_waktu');
+            // $absensi = Absensi::where('employee_id',$items->id);
+            // foreach($absensi as $items2){
+            //     $items2->total_waktu = DB::table('absensis')->sum('total_waktu');
+            //     $employee[] = $items2;
+            // } 
             $employee[] = $items;
         }
         //$employee = EmployeesResource::collection($employees);
@@ -285,6 +293,7 @@ class EmployeeController extends Controller
             ));
 
     }
+
 
     /**
      * Show the form for editing the specified resource.

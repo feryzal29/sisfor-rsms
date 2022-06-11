@@ -75,7 +75,6 @@ class AbsensiController extends Controller
         $absen->saveOrFail();
 
         return redirect()->back()->with(['success'=>'Absen Masuk']);
-
     }
 
     public function manual(Request $request){
@@ -88,6 +87,8 @@ class AbsensiController extends Controller
 
         $selesai = date('Y-m-d H:i:s',strtotime($request->selesai));
 
+        $ttl = Carbon::parse($masuk)->diffInHours($selesai, ['syntax' => 1, 'parts' => 1]);
+
         $id = $request->id;
         
         foreach($id as $item){
@@ -95,7 +96,8 @@ class AbsensiController extends Controller
                 'diklat_id'=>$request->diklat,
                 'employee_id'=>$item,
                 'masuk_at'=>$masuk,
-                'selesai_at'=>$selesai
+                'selesai_at'=>$selesai,
+                'total_waktu'=>$ttl
             ]);
         }
         
@@ -146,9 +148,10 @@ class AbsensiController extends Controller
             'diklat_id'=>$request->diklat_id,
             'date'=>date('Y-m-d',strtotime(now()))
         ])->firstOrFail();
-        
+
         $absen->updateOrfail([
-            'selesai_at'=>now()
+            'selesai_at'=>now(),
+            'total_waktu'=>Carbon::parse($absen->masuk_at)->diffInHours(now(), ['syntax' => 1, 'parts' => 1])
         ]);
 
         return redirect()->back()->with(['success'=>'Absen Pulang Selesai']);
@@ -160,8 +163,10 @@ class AbsensiController extends Controller
      * @param  \App\Models\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Absensi $absensi)
+    public function destroy($id)
     {
-        //
+        $absen = Absensi::findOrfail($id);
+        $absen->delete();
+        return redirect()->back()->with(['success'=>'Data Berhasil Dihapus']);
     }
 }

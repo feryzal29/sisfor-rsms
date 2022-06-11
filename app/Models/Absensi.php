@@ -10,7 +10,7 @@ class Absensi extends Model
 {
     use HasFactory;
     protected $fillable = 
-    ['diklat_id','employee_id','masuk_at','selesai_at','date'];
+    ['diklat_id','employee_id','masuk_at','selesai_at','date','total_waktu'];
 
     public function diklat(){
         return $this->belongsTo(Diklat::class,'diklat_id','id');

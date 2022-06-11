@@ -30,6 +30,8 @@
           <th>Jabatan</th>
           <th>Masuk</th>
           <th>Selesai</th>
+          <th>Total Jam</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -39,6 +41,12 @@
             <td>{{ $item->employee->unit->nama_unit }}</td>
             <td>{{ $item->masuk_at }}</td>
             <td>{{ $item->selesai_at }}</td>
+            <td>{{ $item->total_waktu }} Jam</td>
+            <td>
+              <div class="form-group">
+                <a onclick="return confirm('Are you sure?')" href="{{ route('absen.destroy',$item->id) }}" class="btn btn-danger">delete</a>
+              </div>
+            </td>
           </tr>
           @endforeach
         </tbody>
@@ -48,6 +56,8 @@
           <th>Jabatan</th>
           <th>Masuk</th>
           <th>Selesai</th>
+          <th>Total Jam</th>
+          <th>Action</th>
         </tr>
         </tfoot>
       </table>

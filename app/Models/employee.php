@@ -95,4 +95,8 @@ class employee extends Model
         ]);
     }
 
+    public function JamDiklat(){
+        return $this->hasMany(Absensi::class,'employee_id','id');
+    }
+
 }

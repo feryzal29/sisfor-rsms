@@ -147,6 +147,7 @@ Route::controller(AbsensiController::class)->group(function (){
     Route::post('/absen/masuk', 'store')->middleware('role:admin|diklat')->name('absen.masuk');
     Route::post('/absen/manual','manual')->name('absen.manual');
     Route::put('/absen/selesai', 'update')->middleware('role:admin|diklat')->name('absen.selesai');
+    Route::get('/absen/{id}/delete','destroy')->name('absen.destroy');
 });
 
 // Route::controller(UserController::class)->group(function () {
