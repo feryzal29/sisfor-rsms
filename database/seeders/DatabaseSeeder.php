@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MappingUser;
 use App\Models\unit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,7 +17,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserSeeder::class,
             unitSeeder::class,
             JabatanSeeder::class,
             pendidikanSeeder::class,
@@ -27,7 +27,11 @@ class DatabaseSeeder extends Seeder
             BidangSeeder::class,
             SttsWpSeeder::class,
             SttsKerjaSeeder::class,
-            BankSeeder::class
+            BankSeeder::class,
+            EmployeesSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
+            MapingUsersSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
 

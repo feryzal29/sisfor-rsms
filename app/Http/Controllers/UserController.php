@@ -58,6 +58,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password'=>Hash::make('12345678')
             ]);
+            dd($user);
             $maping = MappingUser::create([
                 'users_id'=>$user->id,
                 'employees_id'=>$request->id_employee
