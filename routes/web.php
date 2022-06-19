@@ -8,6 +8,7 @@ use App\Http\Controllers\BidangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeesCutiController;
 use App\Http\Controllers\EmployeesFileController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisKegiatanController;
@@ -55,7 +56,6 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('login','store')->name('login.store');
     Route::get('logout','logout')->name('logout');
 });
-
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/','index')->middleware('role:user|admin');
@@ -110,6 +110,14 @@ Route::controller(EmployeesFileController::class)->group(function () {
     Route::get('employees/{id}/files','show')->middleware('role:admin|sdi')->name('employees.files');
     Route::post('employee/upload','store')->middleware('role:admin|sdi')->name('employees.upload.store');
     Route::delete('employees/deletefile/{id}','destroy')->middleware('role:admin|sdi')->name('employees.file.delete');
+});
+
+Route::controller(EmployeesCutiController::class)->group(function () {
+    Route::get('employee/{id}/cuti','show')->name('employee.cuti.show');
+    Route::post('employee/cuti/post','store')->name('employee.cuti.store');
+    Route::get('employee/cuti/{id}/edit','showupdate')->name('employee.cuti.showupdate');
+    Route::put('/employee/cuti/{id}/update','update')->name('employee.cuti.update');
+    Route::get('/employee/cuti/{id}/delete','destroy')->name('employee.cuti.destroy');
 });
 
 Route::controller(StrController::class)->group(function () {

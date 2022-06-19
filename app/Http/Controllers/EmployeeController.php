@@ -62,6 +62,8 @@ class EmployeeController extends Controller
         foreach($employees as $items){
             $items->masa_kerja = Carbon::parse($items->mulai_kerja)->diffForHumans(now(), ['syntax' => 1, 'parts' => 3]);
             $items->total_waktu = $items->JamDiklat->sum('total_waktu');
+            
+            $items->TtlCuti = $items->TtlCuti->sum('jml_cuti');
             // $absensi = Absensi::where('employee_id',$items->id);
             // foreach($absensi as $items2){
             //     $items2->total_waktu = DB::table('absensis')->sum('total_waktu');
@@ -203,7 +205,8 @@ class EmployeeController extends Controller
             'email' => $request->email,
             'no_telp' => $request->no_telp,
             'sekolah'=>$request->sekolah,
-            'tahun_lulus'=>$tahun_lulusstr
+            'tahun_lulus'=>$tahun_lulusstr,
+            'ijazah'=>$request->ijazah,
         ]);
 
         return redirect('employees')->with(['success'=>'Data Berhasil ditambah']);
@@ -402,7 +405,8 @@ class EmployeeController extends Controller
             'email' => $request->email,
             'no_telp' => $request->no_telp,
             'sekolah'=>$request->sekolah,
-            'tahun_lulus'=>$tahun_lulusstr
+            'tahun_lulus'=>$tahun_lulusstr,
+            'ijazah'=>$request->ijazah
         ]);
        
         return redirect('/employees')->with(['success'=>'Data Berhasil diganti']);

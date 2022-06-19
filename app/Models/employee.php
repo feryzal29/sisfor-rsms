@@ -27,7 +27,7 @@ class employee extends Model
      'index','mulai_kontrak',
      'cuti_diambil','dankes',
      'no_ktp','email','no_telp',
-     'sekolah','tahun_lulus'
+     'sekolah','tahun_lulus','ijazah'
     ];
 
     public function jenjang(){
@@ -97,6 +97,10 @@ class employee extends Model
 
     public function JamDiklat(){
         return $this->hasMany(Absensi::class,'employee_id','id');
+    }
+
+    public function TtlCuti(){
+        return $this->hasMany(employees_cuti::class,'employee_id','id')->where('status','disetujui');
     }
 
 }

@@ -137,6 +137,10 @@
                         </div>
                     </div>
                     <div class="form-group">
+                      <label>No. Ijazah</label>
+                      <input type="text" name="ijazah" class="form-control" placeholder="No. Ijazah">
+                    </div>
+                    <div class="form-group">
                       <label>Gaji Pokok</label>
                       <input type="number" name="gapok" class="form-control" placeholder="Gaji Pokok">
                     </div>
@@ -266,19 +270,19 @@
   $(document).ready(function () {
     //Date picker
     $('#reservationdate').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#reservationdate2').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#reservationdate3').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#reservationdate4').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#reservationdate5').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
   });
 </script>

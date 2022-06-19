@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\dashboard;
+use App\Models\employee;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,7 +19,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $employee = employee::where('stts_aktif','!=','KELUAR')->get();
+        $empcount = $employee->count();
+        return view('dashboard',compact('empcount'));
     }
 
     /**

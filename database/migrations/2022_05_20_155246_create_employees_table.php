@@ -51,6 +51,7 @@ return new class extends Migration
             $table->string('no_telp');
             $table->string('sekolah')->nullable();
             $table->date('tahun_lulus')->nullable();
+            $table->string('ijazah')->nullable();
             $table->timestamps();
             $table->softDeletes()->nullable();
 

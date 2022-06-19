@@ -53,6 +53,7 @@
                   <th>Pendidikan</th>
                   <th>Asal Sekolah</th>
                   <th>Tahun Lulus</th>
+                  <th>No. Ijazah</th>
                   <th>Gaji Pokok</th>
                   <th>tanggal Lahir</th>
                   <th>Tempat Lahir</th>
@@ -68,7 +69,8 @@
                   <th>Pengurangan</th>
                   <th>Index</th>
                   <th>Mulai Kontrak</th>
-                  <th>Cuti Diambil</th>
+                  <th>Batas Cuti</th>
+                  <th>Cuti diambil</th>
                   <th>Dankes</th>
                   <th>No KTP</th>
                   <th>Email</th>
@@ -104,6 +106,7 @@
                     <td>{{ $item->pendidikan->tingkat }}</td>
                     <td>{{ $item->sekolah }}</td>
                     <td>{{ $item->tahun_lulus }}</td>
+                    <td>{{ $item->ijazah }}</td>
                     <td>{{ $item->gapok }}</td>
                     <td>{{ date('d-M-Y',strtotime($item->tgl_lahir)) }}</td>
                     <td>{{ $item->tmp_lahir}}</td>
@@ -120,6 +123,7 @@
                     <td>{{ $item->index }}</td>
                     <td>{{ $item->mulai_kontrak }}</td>
                     <td>{{ $item->cuti_diambil}}</td>
+                    <td>{{ $item->TtlCuti }}</td>
                     <td>{{ $item->dankes }}</td>
                     <td>{{ $item->no_ktp }}</td>
                     <td>{{ $item->email }}</td>
@@ -146,6 +150,7 @@
                           <a class="dropdown-item" href="{{ route('employees.files',$item->id) }}">File Kepegawaian</a>
                           <a class="dropdown-item" href="{{ route('employees.str',$item->id) }}">STR</a>
                           <a class="dropdown-item" href="{{ route('employees.sip',$item->id) }}">SIP</a>
+                          <a class="dropdown-item" href="{{ route('employee.cuti.show',$item->id) }}">Cuti</a>
                           <a class="dropdown-item" href="{{ route('employee.user',$item->id) }}">Buat User</a>
                           <a class="dropdown-item" href="{{ route('employee.kodeqr',$item->id) }}">Generate QRcode</a>
                         </div>
@@ -173,6 +178,7 @@
                   <th>Pendidikan</th>
                   <th>Asal Sekolah</th>
                   <th>Tahun Lulus</th>
+                  <th>No. Ijazah</th>
                   <th>Gaji Pokok</th>
                   <th>tanggal Lahir</th>
                   <th>Tempat Lahir</th>
@@ -188,7 +194,8 @@
                   <th>Pengurangan</th>
                   <th>Index</th>
                   <th>Mulai Kontrak</th>
-                  <th>Cuti Diambil</th>
+                  <th>Batas Cuti</th>
+                  <th>Cuti diambil</th>
                   <th>Dankes</th>
                   <th>No KTP</th>
                   <th>Email</th>

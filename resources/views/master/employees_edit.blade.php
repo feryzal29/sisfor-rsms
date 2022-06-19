@@ -132,11 +132,15 @@
                     <div class="form-group">
                       <label>Tahun Lulus</label>
                         <div class="input-group date" id="reservationdate5" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" name="tahun_lulus" data-target="#reservationdate5" value="{{ date('d/m/Y',strtotime($employee->tgl_lahir))}}"/>
+                            <input type="text" class="form-control datetimepicker-input" name="tahun_lulus" data-target="#reservationdate5" value="{{ date('d/m/Y',strtotime($employee->tahun_lulus))}}"/>
                             <div class="input-group-append" data-target="#reservationdate5" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                      <label>No. Ijazah</label>
+                      <input type="text" name="sekolah" class="form-control" value="{{ $employee->ijazah }}">
                     </div>
                     <div class="form-group">
                       <label>Gaji Pokok</label>
@@ -270,19 +274,19 @@
   $(document).ready(function () {
     //Date picker
     $('#reservationdate').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#reservationdate2').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#reservationdate3').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#reservationdate4').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#reservationdate5').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
   });
 </script>
