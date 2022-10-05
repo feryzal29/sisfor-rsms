@@ -140,7 +140,7 @@
                     </div>
                     <div class="form-group">
                       <label>No. Ijazah</label>
-                      <input type="text" name="sekolah" class="form-control" value="{{ $employee->ijazah }}">
+                      <input type="text" name="ijazah" class="form-control" value="{{ $employee->ijazah }}">
                     </div>
                     <div class="form-group">
                       <label>Gaji Pokok</label>
