@@ -121,6 +121,7 @@ Route::controller(EmployeesCutiController::class)->group(function () {
 });
 
 Route::controller(StrController::class)->group(function () {
+    Route::get('str/warning','index')->name('str.warning');
     Route::get('employees/{id}/str','show')->name('employees.str');
     Route::get('employees/{id}/showstr','showUpdate')->name('employee.str.show');
     Route::post('employee/str/upload','store')->name('employees.str.upload');

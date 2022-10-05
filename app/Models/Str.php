@@ -12,4 +12,8 @@ class Str extends Model
     protected $fillable = 
     ['employee_id','no_str','tgl_terbit','tgl_ed'];
 
+    public function employee(){
+        return $this->belongsTo(employee::class,'employee_id','id');
+    }
+
 }

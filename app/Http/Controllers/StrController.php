@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\employee;
 use App\Models\Str;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,16 @@ class StrController extends Controller
      */
     public function index()
     {
-        
+        $current = Carbon::now();
+        $tgl_ed = str::all();
+        foreach($tgl_ed as $item){
+            $now = Carbon::now();
+            $tmp = Carbon::parse($item->tgl_ed)->diffInDays();
+            if($tmp < 50){
+                $str = str::all();
+                dd($str);
+            }
+        }
     }
 
     /**

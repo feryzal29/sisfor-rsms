@@ -47,7 +47,7 @@ class AlarmOrientasi extends Command
             
             if($emp > 80){
                 $details = employee::where('stts_kerja','Or')->where('stts_aktif','AKTIF')->get();
-                Mail::to('mferyzalfahlevi29@gmail.com')->send(new \App\Mail\AlarmOrientasiMail($details));
+                Mail::to('rs.pku.muhammadiyah@gmail.com')->send(new \App\Mail\AlarmOrientasiMail($details));
                 dd('Berhasil dikirim');
             } else {
                 dd('gagal');
